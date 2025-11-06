@@ -1,0 +1,310 @@
+\hypertarget{game_8cc}{}\doxysection{game.\+cc File Reference}
+\label{game_8cc}\index{game.cc@{game.cc}}
+
+
+Implementación del juego Tres en Raya para la terminal.  
+
+
+{\ttfamily \#include \char`\"{}game.\+hh\char`\"{}}\newline
+Include dependency graph for game.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{game_8cc_ad318a1a0f1d358e2da94bb25bd78d811}{ini\+\_\+tablero}} (\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&tab)
+\begin{DoxyCompactList}\small\item\em Inicializa el tablero con todas las celdas vacías(\textquotesingle{}.\textquotesingle{}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8cc_a0a9e920b7a81729a37fc8c762d186fca}{mostrar\+\_\+tablero}} (const \mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&tab)
+\begin{DoxyCompactList}\small\item\em Muestra el estado actual del tablero por la terminal. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{game_8cc_a8b3c390045120eb856622f8dbfd2cd2f}{win}} (\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&tab, char player)
+\begin{DoxyCompactList}\small\item\em Verifica si el jugador especificado ha ganado la partida. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{game_8cc_a294a9cf1e14bb9d663f6af81c63f19ad}{draw}} (\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&tab)
+\begin{DoxyCompactList}\small\item\em Verifica si el juego ha terminado en empate. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{game_8cc_a303b6d751f661e4d25c158db79dea614}{jugada\+\_\+posible}} (const \mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&tab, int posi, int posj)
+\begin{DoxyCompactList}\small\item\em Comprueba si una celda específica está dentro de los límites y es vacía. \end{DoxyCompactList}\item 
+pair$<$ int, int $>$ \mbox{\hyperlink{game_8cc_aa710c8185e19495fb29888ea09deedb5}{pedir\+Jugada}} (\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&tab, char player)
+\begin{DoxyCompactList}\small\item\em Solicita y valida una jugada al usuario. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8cc_a1cb881722a50e54dc1805e0ffd62a6aa}{hacer\+\_\+jugada}} (\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&tab, int posi, int posj, char player)
+\begin{DoxyCompactList}\small\item\em Actualiza el tablero con la jugada realizada por un jugador. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8cc_a1a3047c253e726e836b548f3cec5513b}{Player\+Vs\+Player}} ()
+\begin{DoxyCompactList}\small\item\em Ejecuta el bucle de Jugadorvs\+Jugador. \end{DoxyCompactList}\item 
+pair$<$ int, int $>$ \mbox{\hyperlink{game_8cc_af1b7eec669e2aaf75e98cf616905ce34}{jugada\+Rand\+AI}} (\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} tab)
+\begin{DoxyCompactList}\small\item\em Devuelve una jugada válida en posición random. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game_8cc_aba1fdcae54692ecbf409f642f037d452}{eval}} (\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&tab)
+\begin{DoxyCompactList}\small\item\em Evalúa la puntuación del tablero para el algoritmo minimax. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game_8cc_af0e0cd92e11d0a8f54b2c9b89fe9937d}{minimax}} (\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&tab, bool is\+Max, int depth)
+\begin{DoxyCompactList}\small\item\em Implementación del algoritmo Minimax para determinar la mejor jugada posible. \end{DoxyCompactList}\item 
+pair$<$ int, int $>$ \mbox{\hyperlink{game_8cc_a673fafb0c12541268c11f413341c6a81}{jugada\+Top\+AI}} (\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} tab)
+\begin{DoxyCompactList}\small\item\em Determina la mejor jugada para la AI. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8cc_a2d53e86a98d5c4ce663ebd0827e689be}{Player\+Vs\+Ai}} ()
+\begin{DoxyCompactList}\small\item\em Ejecuta el bucle de Jugadorvs\+AI. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8cc_ab7f923b587e87f163d5f4050a17b1e24}{empezar\+\_\+juego}} ()
+\begin{DoxyCompactList}\small\item\em Inicia el juego. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementación del juego Tres en Raya para la terminal. 
+
+Este archivo contiene la definición de todas las funciones que manejan la lógica del juego, la interacción con consola y la AI. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{game_8cc_a294a9cf1e14bb9d663f6af81c63f19ad}\label{game_8cc_a294a9cf1e14bb9d663f6af81c63f19ad}} 
+\index{game.cc@{game.cc}!draw@{draw}}
+\index{draw@{draw}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily bool draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&}]{tab }\end{DoxyParamCaption})}
+
+
+
+Verifica si el juego ha terminado en empate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & Referencia a la matriz del tablero 3x3. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el tablero está lleno y no hay ganador, false en caso contrario. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game_8cc_ab7f923b587e87f163d5f4050a17b1e24}\label{game_8cc_ab7f923b587e87f163d5f4050a17b1e24}} 
+\index{game.cc@{game.cc}!empezar\_juego@{empezar\_juego}}
+\index{empezar\_juego@{empezar\_juego}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{empezar\_juego()}{empezar\_juego()}}
+{\footnotesize\ttfamily void empezar\+\_\+juego (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inicia el juego. 
+
+\mbox{\Hypertarget{game_8cc_aba1fdcae54692ecbf409f642f037d452}\label{game_8cc_aba1fdcae54692ecbf409f642f037d452}} 
+\index{game.cc@{game.cc}!eval@{eval}}
+\index{eval@{eval}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily int eval (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&}]{tab }\end{DoxyParamCaption})}
+
+
+
+Evalúa la puntuación del tablero para el algoritmo minimax. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & Referencia a la matriz del tablero 3x3. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+10 si \textquotesingle{}O\textquotesingle{} gana, -\/10 si \textquotesingle{}X\textquotesingle{} gana, 0 si hay empate o el juago continúa. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game_8cc_a1cb881722a50e54dc1805e0ffd62a6aa}\label{game_8cc_a1cb881722a50e54dc1805e0ffd62a6aa}} 
+\index{game.cc@{game.cc}!hacer\_jugada@{hacer\_jugada}}
+\index{hacer\_jugada@{hacer\_jugada}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{hacer\_jugada()}{hacer\_jugada()}}
+{\footnotesize\ttfamily void hacer\+\_\+jugada (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&}]{tab,  }\item[{int}]{posi,  }\item[{int}]{posj,  }\item[{char}]{player }\end{DoxyParamCaption})}
+
+
+
+Actualiza el tablero con la jugada realizada por un jugador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & Referencia a la matriz del tablero 3x3. \\
+\hline
+{\em posi} & Índice de la fila \mbox{[}0,2\mbox{]}. \\
+\hline
+{\em posj} & Índice de la columna \mbox{[}0,2\mbox{]}. \\
+\hline
+{\em player} & Carácter del jugador actual (\textquotesingle{}X\textquotesingle{} $\vert$ \textquotesingle{}O\textquotesingle{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+La jugada es posible. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Se actualiza tab con los valores dados. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{game_8cc_ad318a1a0f1d358e2da94bb25bd78d811}\label{game_8cc_ad318a1a0f1d358e2da94bb25bd78d811}} 
+\index{game.cc@{game.cc}!ini\_tablero@{ini\_tablero}}
+\index{ini\_tablero@{ini\_tablero}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{ini\_tablero()}{ini\_tablero()}}
+{\footnotesize\ttfamily void ini\+\_\+tablero (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&}]{tab }\end{DoxyParamCaption})}
+
+
+
+Inicializa el tablero con todas las celdas vacías(\textquotesingle{}.\textquotesingle{}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & Referencia a la matriz del tablero 3x3. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+La matriz \textquotesingle{}tab\textquotesingle{} es de 3x3. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+Todas las celdas de \textquotesingle{}tab\textquotesingle{} son \textquotesingle{}.\textquotesingle{}. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{game_8cc_a303b6d751f661e4d25c158db79dea614}\label{game_8cc_a303b6d751f661e4d25c158db79dea614}} 
+\index{game.cc@{game.cc}!jugada\_posible@{jugada\_posible}}
+\index{jugada\_posible@{jugada\_posible}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{jugada\_posible()}{jugada\_posible()}}
+{\footnotesize\ttfamily bool jugada\+\_\+posible (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&}]{tab,  }\item[{int}]{posi,  }\item[{int}]{posj }\end{DoxyParamCaption})}
+
+
+
+Comprueba si una celda específica está dentro de los límites y es vacía. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & Referencia a la matriz del tablero 3x3. \\
+\hline
+{\em posi} & Índice de la fila \mbox{[}0,2\mbox{]}. \\
+\hline
+{\em posj} & Índice de la columna \mbox{[}0,2\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la posición es válida y la casilla es \textquotesingle{}.\textquotesingle{}, false en caso contrario. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game_8cc_af1b7eec669e2aaf75e98cf616905ce34}\label{game_8cc_af1b7eec669e2aaf75e98cf616905ce34}} 
+\index{game.cc@{game.cc}!jugadaRandAI@{jugadaRandAI}}
+\index{jugadaRandAI@{jugadaRandAI}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{jugadaRandAI()}{jugadaRandAI()}}
+{\footnotesize\ttfamily pair$<$int, int$>$ jugada\+Rand\+AI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}}}]{tab }\end{DoxyParamCaption})}
+
+
+
+Devuelve una jugada válida en posición random. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & Copia de la matriz del tablero 3x3. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+un pair (fila, columna) con la jugada válida. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game_8cc_a673fafb0c12541268c11f413341c6a81}\label{game_8cc_a673fafb0c12541268c11f413341c6a81}} 
+\index{game.cc@{game.cc}!jugadaTopAI@{jugadaTopAI}}
+\index{jugadaTopAI@{jugadaTopAI}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{jugadaTopAI()}{jugadaTopAI()}}
+{\footnotesize\ttfamily pair$<$int, int$>$ jugada\+Top\+AI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}}}]{tab }\end{DoxyParamCaption})}
+
+
+
+Determina la mejor jugada para la AI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & Copia de la matriz del tablero 3x3. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+un pair (fila, columna) con la mejor jugada. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game_8cc_af0e0cd92e11d0a8f54b2c9b89fe9937d}\label{game_8cc_af0e0cd92e11d0a8f54b2c9b89fe9937d}} 
+\index{game.cc@{game.cc}!minimax@{minimax}}
+\index{minimax@{minimax}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{minimax()}{minimax()}}
+{\footnotesize\ttfamily int minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&}]{tab,  }\item[{bool}]{is\+Max,  }\item[{int}]{depth }\end{DoxyParamCaption})}
+
+
+
+Implementación del algoritmo Minimax para determinar la mejor jugada posible. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & Referencia a la matriz del tablero 3x3. \\
+\hline
+{\em is\+Max} & Booleano que indica si se busca maximizar (true para IA \textquotesingle{}O\textquotesingle{}) o minimizar (false para Jugador \textquotesingle{}X\textquotesingle{}). \\
+\hline
+{\em depth} & Nivel de profundidad restante para la búsqueda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La mejor puntuación alcanzable desde este estado del tablero. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game_8cc_a0a9e920b7a81729a37fc8c762d186fca}\label{game_8cc_a0a9e920b7a81729a37fc8c762d186fca}} 
+\index{game.cc@{game.cc}!mostrar\_tablero@{mostrar\_tablero}}
+\index{mostrar\_tablero@{mostrar\_tablero}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{mostrar\_tablero()}{mostrar\_tablero()}}
+{\footnotesize\ttfamily void mostrar\+\_\+tablero (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&}]{tab }\end{DoxyParamCaption})}
+
+
+
+Muestra el estado actual del tablero por la terminal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & Referencia a la matriz del tablero 3x3. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+La matriz \textquotesingle{}tab\textquotesingle{} es de 3x3. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+El tablero se imprime en la terminal. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{game_8cc_aa710c8185e19495fb29888ea09deedb5}\label{game_8cc_aa710c8185e19495fb29888ea09deedb5}} 
+\index{game.cc@{game.cc}!pedirJugada@{pedirJugada}}
+\index{pedirJugada@{pedirJugada}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{pedirJugada()}{pedirJugada()}}
+{\footnotesize\ttfamily pair$<$int, int$>$ pedir\+Jugada (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&}]{tab,  }\item[{char}]{player }\end{DoxyParamCaption})}
+
+
+
+Solicita y valida una jugada al usuario. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & Referencia a la matriz del tablero 3x3. \\
+\hline
+{\em player} & Carácter del jugador actual (\textquotesingle{}X\textquotesingle{} $\vert$ \textquotesingle{}O\textquotesingle{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+un pair (fila, columna) con la jugada válida introducida por el usuario. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{game_8cc_a2d53e86a98d5c4ce663ebd0827e689be}\label{game_8cc_a2d53e86a98d5c4ce663ebd0827e689be}} 
+\index{game.cc@{game.cc}!PlayerVsAi@{PlayerVsAi}}
+\index{PlayerVsAi@{PlayerVsAi}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{PlayerVsAi()}{PlayerVsAi()}}
+{\footnotesize\ttfamily void Player\+Vs\+Ai (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Ejecuta el bucle de Jugadorvs\+AI. 
+
+\mbox{\Hypertarget{game_8cc_a1a3047c253e726e836b548f3cec5513b}\label{game_8cc_a1a3047c253e726e836b548f3cec5513b}} 
+\index{game.cc@{game.cc}!PlayerVsPlayer@{PlayerVsPlayer}}
+\index{PlayerVsPlayer@{PlayerVsPlayer}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{PlayerVsPlayer()}{PlayerVsPlayer()}}
+{\footnotesize\ttfamily void Player\+Vs\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Ejecuta el bucle de Jugadorvs\+Jugador. 
+
+\mbox{\Hypertarget{game_8cc_a8b3c390045120eb856622f8dbfd2cd2f}\label{game_8cc_a8b3c390045120eb856622f8dbfd2cd2f}} 
+\index{game.cc@{game.cc}!win@{win}}
+\index{win@{win}!game.cc@{game.cc}}
+\doxysubsubsection{\texorpdfstring{win()}{win()}}
+{\footnotesize\ttfamily bool win (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game_8hh_a8d851d7341178c1c848d6ac3ae3c311a}{MC}} \&}]{tab,  }\item[{char}]{player }\end{DoxyParamCaption})}
+
+
+
+Verifica si el jugador especificado ha ganado la partida. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & Referencia a la matriz del tablero 3x3. \\
+\hline
+{\em player} & Carácter del jugador a verificar (\textquotesingle{}X\textquotesingle{} $\vert$ \textquotesingle{}O\textquotesingle{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si el jugador ha completado una (línea $\vert$ columna $\vert$ diagonal), false en caso contrario. 
+\end{DoxyReturn}

@@ -1,0 +1,5 @@
+<map id="game.hh" name="game.hh">
+<area shape="rect" id="node1" title="Implementación del juego Tres en Raya para la terminal, incluye modo de Jugador vs Jugador y Jugador ..." alt="" coords="54,5,133,32"/>
+<area shape="rect" id="node2" href="$game_8cc.html" title="Implementación del juego Tres en Raya para la terminal." alt="" coords="5,80,83,107"/>
+<area shape="rect" id="node3" href="$main_8cc.html" title="Ejecutor del Tres en Raya para terminal." alt="" coords="107,80,181,107"/>
+</map>
