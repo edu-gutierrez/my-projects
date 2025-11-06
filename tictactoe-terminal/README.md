@@ -27,8 +27,6 @@ Este repositorio contiene la implementación del juego clásico Tres en Raya (Ti
 
 La lógica de la IA y las funciones principales del juego están completamente documentadas usando el estándar **Doxygen**.
 
-## 📚 Estructura y Documentación Técnica
-
 | Archivo | Contenido Principal |
 | :--- | :--- |
 | `main.cc` | Punto de entrada del programa. |
