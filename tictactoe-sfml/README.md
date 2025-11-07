@@ -1,6 +1,6 @@
-# Tres en Raya (Tic-Tac-Toe) - Versión de Consola
+# Tres en Raya (Tic-Tac-Toe) - Versión gráfica
 
-Este repositorio contiene la implementación del juego clásico Tres en Raya (Tic-Tac-Toe) diseñado para ejecutarse en la terminal.
+Este repositorio contiene la implementación del juego clásico Tres en Raya (Tic-Tac-Toe) diseñado gráficamente.
 
 ---
 
@@ -8,7 +8,7 @@ Este repositorio contiene la implementación del juego clásico Tres en Raya (Ti
 
 * **Modos de Juego:** Jugador vs Jugador y Jugador vs IA (con 2 niveles de dificultad).
 * **Inteligencia Artificial:** Implementación completa del algoritmo **Minimax**.
-* **Entorno:** Consola.
+* **Entorno:** SFML.
 
 ## Compilación y Ejecución
 
@@ -19,7 +19,7 @@ Este repositorio contiene la implementación del juego clásico Tres en Raya (Ti
 
 2.  **Ejecutar el Juego:**
     ```bash
-    ./Tictactoe_terminal
+    ./TicTacToeUI
     ```
 ---
 
@@ -30,7 +30,8 @@ La lógica de la IA y las funciones principales del juego están completamente d
 | Archivo | Contenido Principal |
 | :--- | :--- |
 | `main.cc` | Punto de entrada del programa. |
-| `game.cc` / `game.hh` | Lógica pura del juego, manejo de tablero, y algoritmo **Minimax**. |
+| `game.cc` / `game.hh` | Lógica pura del juego y algoritmo **Minimax**. |
+| `UI_game.cc` / `UI_game.hh` | Diseño de la interfaz gráfica con SFML. |
 | `Makefile` | Reglas de compilación y enlace. |
 
 ### Enlace a la Documentación (Doxygen)

@@ -1,0 +1,113 @@
+\hypertarget{classTicTacToe}{}\doxysection{Tic\+Tac\+Toe Class Reference}
+\label{classTicTacToe}\index{TicTacToe@{TicTacToe}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTicTacToe_a103fe9a5ae41b5ef756e20594a70cb7a}\label{classTicTacToe_a103fe9a5ae41b5ef756e20594a70cb7a}} 
+\mbox{\hyperlink{classTicTacToe_a103fe9a5ae41b5ef756e20594a70cb7a}{Tic\+Tac\+Toe}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto de la clase. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classTicTacToe_ab78aeccee836796eb40e1bbcb11daf54}{make\+Move}} (int row, int col)
+\begin{DoxyCompactList}\small\item\em Intenta hacer una jugada. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classTicTacToe_a42bc832806b4077a500fe9faa731a82c}{is\+Move\+Valid}} (int row, int col) const
+\begin{DoxyCompactList}\small\item\em Comprueba si una celda específica es vacía. \end{DoxyCompactList}\item 
+pair$<$ int, int $>$ \mbox{\hyperlink{classTicTacToe_af3f9efdb77c9ef27f6920c963a481e4b}{get\+AIMove}} (int difficulty)
+\begin{DoxyCompactList}\small\item\em Devuelve el movimiento generado por la AI. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{classTicTacToe_a793cf1558b7d97fb16d52159cc58eca3}{get\+Winner}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el estado del ganador de la partida. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTicTacToe_a023953c9f86b4113446bf3f2042f2b73}\label{classTicTacToe_a023953c9f86b4113446bf3f2042f2b73}} 
+char \mbox{\hyperlink{classTicTacToe_a023953c9f86b4113446bf3f2042f2b73}{get\+Current\+Player}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el jugador actual. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTicTacToe_a742a6533c05ffa6b89a66f31c393e5ac}\label{classTicTacToe_a742a6533c05ffa6b89a66f31c393e5ac}} 
+const MC \& \mbox{\hyperlink{classTicTacToe_a742a6533c05ffa6b89a66f31c393e5ac}{get\+Board}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el tablero. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classTicTacToe_aa67d0dcddd5dddeae5f524d03bc07274}{is\+Active}} () const
+\item 
+\mbox{\Hypertarget{classTicTacToe_a8eda8d212acd948a450bc5f70923e11d}\label{classTicTacToe_a8eda8d212acd948a450bc5f70923e11d}} 
+void \mbox{\hyperlink{classTicTacToe_a8eda8d212acd948a450bc5f70923e11d}{reset\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve los parametros a sus iniciales. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTicTacToe_af3f9efdb77c9ef27f6920c963a481e4b}\label{classTicTacToe_af3f9efdb77c9ef27f6920c963a481e4b}} 
+\index{TicTacToe@{TicTacToe}!getAIMove@{getAIMove}}
+\index{getAIMove@{getAIMove}!TicTacToe@{TicTacToe}}
+\doxysubsubsection{\texorpdfstring{getAIMove()}{getAIMove()}}
+{\footnotesize\ttfamily pair$<$ int, int $>$ Tic\+Tac\+Toe\+::get\+AIMove (\begin{DoxyParamCaption}\item[{int}]{difficulty }\end{DoxyParamCaption})}
+
+
+
+Devuelve el movimiento generado por la AI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em difficulty} & 0 si es modo fácil, 1 si es modo difícil. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+El movimiento generado por la AI. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTicTacToe_a793cf1558b7d97fb16d52159cc58eca3}\label{classTicTacToe_a793cf1558b7d97fb16d52159cc58eca3}} 
+\index{TicTacToe@{TicTacToe}!getWinner@{getWinner}}
+\index{getWinner@{getWinner}!TicTacToe@{TicTacToe}}
+\doxysubsubsection{\texorpdfstring{getWinner()}{getWinner()}}
+{\footnotesize\ttfamily char Tic\+Tac\+Toe\+::get\+Winner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Devuelve el estado del ganador de la partida. 
+
+\begin{DoxyReturn}{Returns}
+\textquotesingle{}X\textquotesingle{}, \textquotesingle{}O\textquotesingle{}, \textquotesingle{}D\textquotesingle{}(draw) o \textquotesingle{}.\textquotesingle{}(juego en curso) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTicTacToe_aa67d0dcddd5dddeae5f524d03bc07274}\label{classTicTacToe_aa67d0dcddd5dddeae5f524d03bc07274}} 
+\index{TicTacToe@{TicTacToe}!isActive@{isActive}}
+\index{isActive@{isActive}!TicTacToe@{TicTacToe}}
+\doxysubsubsection{\texorpdfstring{isActive()}{isActive()}}
+{\footnotesize\ttfamily bool Tic\+Tac\+Toe\+::is\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Comprueba si hay una partida en curso. \mbox{\Hypertarget{classTicTacToe_a42bc832806b4077a500fe9faa731a82c}\label{classTicTacToe_a42bc832806b4077a500fe9faa731a82c}} 
+\index{TicTacToe@{TicTacToe}!isMoveValid@{isMoveValid}}
+\index{isMoveValid@{isMoveValid}!TicTacToe@{TicTacToe}}
+\doxysubsubsection{\texorpdfstring{isMoveValid()}{isMoveValid()}}
+{\footnotesize\ttfamily bool Tic\+Tac\+Toe\+::is\+Move\+Valid (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption}) const}
+
+
+
+Comprueba si una celda específica es vacía. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Índice de la fila \mbox{[}0,2\mbox{]}. \\
+\hline
+{\em col} & Índice de la columna \mbox{[}0,2\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la casilla es \textquotesingle{}.\textquotesingle{}, false en caso contrario. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTicTacToe_ab78aeccee836796eb40e1bbcb11daf54}\label{classTicTacToe_ab78aeccee836796eb40e1bbcb11daf54}} 
+\index{TicTacToe@{TicTacToe}!makeMove@{makeMove}}
+\index{makeMove@{makeMove}!TicTacToe@{TicTacToe}}
+\doxysubsubsection{\texorpdfstring{makeMove()}{makeMove()}}
+{\footnotesize\ttfamily bool Tic\+Tac\+Toe\+::make\+Move (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+
+
+Intenta hacer una jugada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Índice de la fila \mbox{[}0,2\mbox{]}. \\
+\hline
+{\em col} & Índice de la columna \mbox{[}0,2\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la jugada es válida, false en caso contrario. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{game_8hh}{game.\+hh}}\item 
+\mbox{\hyperlink{game_8cc}{game.\+cc}}\end{DoxyCompactItemize}

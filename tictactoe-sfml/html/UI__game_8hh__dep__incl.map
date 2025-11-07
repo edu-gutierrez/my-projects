@@ -1,0 +1,4 @@
+<map id="UI_game.hh" name="UI_game.hh">
+<area shape="rect" id="node1" title="Implementación de la interfaz del juego Tres en Raya para SFML." alt="" coords="5,5,105,32"/>
+<area shape="rect" id="node2" href="$main_8cc.html" title="Ejecutor del Tres en Raya para SFML." alt="" coords="19,80,92,107"/>
+</map>
