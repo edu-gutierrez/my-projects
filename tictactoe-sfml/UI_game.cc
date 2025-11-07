@@ -17,7 +17,7 @@ gameUI::gameUI()
       difficulty(1),
       window(sf::VideoMode(static_cast<unsigned int>(windowSize), 
                            static_cast<unsigned int>(windowSize)), 
-                           "Tic Tac Toe", //Nombre de la ventana
+                           "Tres en Raya", //Nombre de la ventana
                            sf::Style::Titlebar | sf::Style::Close)
 
 {
@@ -39,7 +39,7 @@ void gameUI::iniGraphics(){
 
     menuTitleText = instructionText;
     menuTitleText.setCharacterSize(70);
-    menuTitleText.setString("Tic Tac Toe");
+    menuTitleText.setString("Tres en Raya");
 
     optionPVP = menuTitleText;
     optionPVP.setCharacterSize(40);
