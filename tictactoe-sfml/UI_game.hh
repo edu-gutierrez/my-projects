@@ -1,5 +1,4 @@
 /**
- * /**
  * @file UI_game.hh
  * @brief Implementación de la interfaz del juego Tres en Raya para SFML
  * 
