@@ -12,6 +12,18 @@ ALGORITHMS = {
     "9": ("Random Sort", sorting_algorithms.random_sort),
 }
 
+ALGORITHMS_QT = {
+    "Bubble Sort": "1",
+    "Cocktail Sort": "2",
+    "Insertion Sort": "3",
+    "Merge Sort": "4",
+    "Gnome Sort": "5",
+    "Selection Sort": "6",
+    "Quick Sort": "7",
+    "Bogo Sort": "8",
+    "Random Sort": "9",
+}
+
 def get_algorithm(choice: str):
     return ALGORITHMS.get(choice, (None, None))
     
