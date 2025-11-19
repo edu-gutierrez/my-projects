@@ -1,3 +1,5 @@
+import random
+
 def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -8,6 +10,7 @@ def bubble_sort(arr):
                 swapped = True                
                 yield arr.copy(), j, j+1
         if not swapped:
+            yield arr.copy(), i, i
             break
 
 def cocktail_sort(arr):
@@ -32,6 +35,7 @@ def cocktail_sort(arr):
                 new_right = i
                 yield arr.copy(), i, i+1
         right = new_right
+        yield arr.copy(), left, right
 
 def insertion_sort(arr):
     n = len(arr)
@@ -129,6 +133,7 @@ def _quick_sort(arr, low, high):
         
         yield from _quick_sort(arr, low, pivot - 1)
         yield from _quick_sort(arr, pivot + 1, high)
+        yield arr.copy(), low, high
 
 def _partition(arr, low, high):
     pivot = arr[high]
@@ -147,3 +152,15 @@ def _partition(arr, low, high):
     frames.append((arr.copy(), i+1, high))
 
     return i+1, frames
+
+def bogo_sort(arr):
+    arr = list(arr)
+    while not _is_sorted(arr):
+        random.shuffle(arr)
+        yield arr.copy()
+
+def _is_sorted(arr):
+    for i in range(len(arr) - 1):
+        if arr[i] > arr[i+1]:
+            return False
+    return True

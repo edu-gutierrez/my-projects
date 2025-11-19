@@ -4,6 +4,9 @@ from visualizer import SortingVisualizer # type: ignore
 
 def main():
     n = int(input("Introduce tamaño del vector: "))
+    if n <= 0:
+        print("Tamaño inválido")
+        return
 
     print("Selecciona el algoritmo:")
     print("1- Bubble Sort")
@@ -13,6 +16,7 @@ def main():
     print("5- Gnome Sort")
     print("6- Selection Sort")
     print("7- Quick Sort")
+    print("8- Bogo Sort")
 
     choice = input("Opción: ")
 

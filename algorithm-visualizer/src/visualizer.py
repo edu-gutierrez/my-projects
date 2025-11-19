@@ -36,13 +36,21 @@ class SortingVisualizer:
 
     def update(self):
         try:
-            arr, i, j = next(self.generator)
+            frame = next(self.generator)
 
-            # Restablecemos colores y destacamos barras swapeadas
-            for k in range(len(arr)):
-                self.brushes[k] = pg.mkBrush("w")
-            self.brushes[i] = pg.mkBrush("r")
-            self.brushes[j] = pg.mkBrush("r")
+            if isinstance(frame, list):
+                arr = frame
+                for k in range(len(arr)):
+                    self.brushes[k] = pg.mkBrush("w")
+
+            else:
+                arr, i, j = next(self.generator)
+
+                # Restablecemos colores y destacamos barras swapeadas
+                for k in range(len(arr)):
+                    self.brushes[k] = pg.mkBrush("w")
+                self.brushes[i] = pg.mkBrush("r")
+                self.brushes[j] = pg.mkBrush("r")
 
             # Actualización de las barras 
             self.bars.setOpts(height=arr, brushes=self.brushes)

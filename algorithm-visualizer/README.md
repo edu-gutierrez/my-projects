@@ -21,3 +21,4 @@ python3 src/main.py
 - Gnome Sort
 - Selection Sort
 - Quick Sort
+- Bogo Sort
