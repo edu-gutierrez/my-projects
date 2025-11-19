@@ -3,6 +3,7 @@ import sorting_algorithms
 ALGORITHMS = {
     "1": ("Bubble Sort", sorting_algorithms.bubble_sort),
     "2": ("Cocktail Sort", sorting_algorithms.cocktail_sort),
+    "3": ("Insertion Sort", sorting_algorithms.insertion_sort),
 }
 
 def get_algorithm(choice: str):

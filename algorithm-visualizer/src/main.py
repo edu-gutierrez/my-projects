@@ -8,6 +8,7 @@ def main():
     print("Selecciona el algoritmo:")
     print("1- Bubble Sort")
     print("2- Cocktail Sort")
+    print("3- Insertion Sort")
 
     choice = input("Opción: ")
 
