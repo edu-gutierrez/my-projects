@@ -6,6 +6,7 @@ ALGORITHMS = {
     "3": ("Insertion Sort", sorting_algorithms.insertion_sort),
     "4": ("Merge Sort", sorting_algorithms.merge_sort),
     "5": ("Gnome Sort", sorting_algorithms.gnome_sort),
+    "6": ("Selection Sort", sorting_algorithms.selection_sort),
 }
 
 def get_algorithm(choice: str):

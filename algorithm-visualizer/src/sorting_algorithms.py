@@ -94,10 +94,23 @@ def gnome_sort(arr):
         if arr[i-1] <= arr[i]:
             yield arr.copy(), i-1, i
             i += 1
-            
+
         else:
             arr[i-1], arr[i] = arr[i], arr[i-1]
             yield arr.copy(), i-1, i
             i -= 1
             if i == 0:
                 i = 1
+
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n-1):
+        min = i
+
+        for j in range(i+1, n):
+            yield arr.copy(), min, j
+            if arr[j] < arr[min]:
+                min = j
+        
+        arr[i], arr[min] = arr[min], arr[i]
+        yield arr.copy(), i, min

@@ -19,3 +19,4 @@ python3 src/main.py
 - Insertion Sort
 - Merge Sort
 - Gnome Sort
+- Selection Sort

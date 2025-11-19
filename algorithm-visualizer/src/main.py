@@ -11,6 +11,7 @@ def main():
     print("3- Insertion Sort")
     print("4- Merge Sort")
     print("5- Gnome Sort")
+    print("6- Selection Sort")
 
     choice = input("Opción: ")
 
