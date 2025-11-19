@@ -22,3 +22,4 @@ python3 src/main.py
 - Selection Sort
 - Quick Sort
 - Bogo Sort
+- Random Sort

@@ -17,6 +17,7 @@ def main():
     print("6- Selection Sort")
     print("7- Quick Sort")
     print("8- Bogo Sort")
+    print("9- Random Sort")
 
     choice = input("Opción: ")
 

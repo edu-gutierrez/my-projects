@@ -9,6 +9,7 @@ ALGORITHMS = {
     "6": ("Selection Sort", sorting_algorithms.selection_sort),
     "7": ("Quick Sort", sorting_algorithms.quick_sort),
     "8": ("Bogo Sort", sorting_algorithms.bogo_sort),
+    "9": ("Random Sort", sorting_algorithms.random_sort),
 }
 
 def get_algorithm(choice: str):

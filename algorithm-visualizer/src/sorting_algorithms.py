@@ -164,3 +164,15 @@ def _is_sorted(arr):
         if arr[i] > arr[i+1]:
             return False
     return True
+
+def random_sort(arr):
+    arr = list(arr)
+    n = len(arr)
+
+    while not _is_sorted(arr):
+        for i in range(n-1, 0, -1):
+            j = random.randint(0, i)
+            arr[i], arr[j] = arr[j], arr[i]
+            yield arr.copy(), i, j
+    yield arr.copy()
+    
