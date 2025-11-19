@@ -114,3 +114,36 @@ def selection_sort(arr):
         
         arr[i], arr[min] = arr[min], arr[i]
         yield arr.copy(), i, min
+
+def quick_sort(arr):
+    arr = list(arr)
+    yield from _quick_sort(arr, 0, len(arr) - 1)
+    return
+
+def _quick_sort(arr, low, high):
+    if low < high:
+        pivot, frames = _partition(arr, low, high)
+
+        for frame in frames:
+            yield frame
+        
+        yield from _quick_sort(arr, low, pivot - 1)
+        yield from _quick_sort(arr, pivot + 1, high)
+
+def _partition(arr, low, high):
+    pivot = arr[high]
+    i = low - 1
+    frames = [] # Hay que usar lista para pasar los yields ya que la funcion devuelve un valor
+    
+    for j in range(low, high):
+        frames.append((arr.copy(), j, high))
+
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+            frames.append((arr.copy(), i, j))
+
+    arr[i+1], arr[high] = arr[high], arr[i+1]
+    frames.append((arr.copy(), i+1, high))
+
+    return i+1, frames

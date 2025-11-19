@@ -12,6 +12,7 @@ def main():
     print("4- Merge Sort")
     print("5- Gnome Sort")
     print("6- Selection Sort")
+    print("7- Quick Sort")
 
     choice = input("Opción: ")
 

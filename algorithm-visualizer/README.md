@@ -20,3 +20,4 @@ python3 src/main.py
 - Merge Sort
 - Gnome Sort
 - Selection Sort
+- Quick Sort
