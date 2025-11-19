@@ -9,6 +9,7 @@ def main():
     print("1- Bubble Sort")
     print("2- Cocktail Sort")
     print("3- Insertion Sort")
+    print("4- Merge Sort")
 
     choice = input("Opción: ")
 

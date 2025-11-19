@@ -16,3 +16,5 @@ python3 src/main.py
 
 - Bubble Sort
 - Cocktail Sort
+- Insertion Sort
+- Merge Sort

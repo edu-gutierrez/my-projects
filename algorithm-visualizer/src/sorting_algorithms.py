@@ -46,3 +46,43 @@ def insertion_sort(arr):
             j-=1
         arr[j+1] = key
         yield arr.copy(), j+1, i
+
+def merge_sort(arr):
+    arr = list(arr)
+    yield from _merge_sort(arr, 0, len(arr) - 1)
+    return
+
+def _merge_sort(arr, left, right):
+    if left >= right:
+        return
+    mid = (left + right) // 2
+
+    yield from _merge_sort(arr, left, mid)
+    yield from _merge_sort(arr, mid + 1, right)
+    yield from _merge(arr, left, mid, right)
+
+def _merge(arr, left, mid, right):
+    temp = []
+    i = left
+    j = mid + 1
+    while i <= mid and j <= right:
+        yield arr.copy(), i, j
+        if arr[i] < arr[j]:
+            temp.append(arr[i])
+            i += 1
+        else:
+            temp.append(arr[j])
+            j += 1
+
+    while i <= mid:
+        yield arr.copy(), i, i
+        temp.append(arr[i])
+        i += 1
+    while j <= right:
+        yield arr.copy(), j, j
+        temp.append(arr[j])
+        j += 1
+
+    for k, val in enumerate(temp):
+        arr[left + k] = val
+        yield arr.copy(), left + k, left + k
