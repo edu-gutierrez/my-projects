@@ -10,6 +10,7 @@ def main():
     print("2- Cocktail Sort")
     print("3- Insertion Sort")
     print("4- Merge Sort")
+    print("5- Gnome Sort")
 
     choice = input("Opción: ")
 

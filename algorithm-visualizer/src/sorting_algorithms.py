@@ -3,10 +3,10 @@ def bubble_sort(arr):
     for i in range(n):
         swapped = False
         for j in range(0, n - i - 1):
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
                 swapped = True                
-                yield arr.copy(), j, j + 1
+                yield arr.copy(), j, j+1
         if not swapped:
             break
 
@@ -22,7 +22,7 @@ def cocktail_sort(arr):
             if arr[i] < arr[i-1]:
                 arr[i], arr[i-1] = arr[i-1], arr[i]
                 new_left = i
-                yield arr.copy(), i, i - 1
+                yield arr.copy(), i, i-1
         left = new_left
 
         new_right = left
@@ -30,7 +30,7 @@ def cocktail_sort(arr):
             if(arr[i] > arr[i+1]):
                 arr[i], arr[i+1] = arr[i+1], arr[i]
                 new_right = i
-                yield arr.copy(), i, i + 1
+                yield arr.copy(), i, i+1
         right = new_right
 
 def insertion_sort(arr):
@@ -86,3 +86,18 @@ def _merge(arr, left, mid, right):
     for k, val in enumerate(temp):
         arr[left + k] = val
         yield arr.copy(), left + k, left + k
+
+def gnome_sort(arr):
+    n = len(arr)
+    i = 1
+    while i < n:
+        if arr[i-1] <= arr[i]:
+            yield arr.copy(), i-1, i
+            i += 1
+            
+        else:
+            arr[i-1], arr[i] = arr[i], arr[i-1]
+            yield arr.copy(), i-1, i
+            i -= 1
+            if i == 0:
+                i = 1

@@ -18,3 +18,4 @@ python3 src/main.py
 - Cocktail Sort
 - Insertion Sort
 - Merge Sort
+- Gnome Sort
