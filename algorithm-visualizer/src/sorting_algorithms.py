@@ -175,4 +175,32 @@ def random_sort(arr):
             arr[i], arr[j] = arr[j], arr[i]
             yield arr.copy(), i, j
     yield arr.copy()
-    
+
+def bucket_sort(arr):
+    n = len(arr)
+    if n <= 1:
+        return
+    if n < 10: 
+        num_buckets = 1
+    else:
+        num_buckets = n // 10
+    buckets = [[] for _ in range(0, num_buckets)]
+
+    max_val = max(arr)
+    min_val = min(arr)
+    range_val = (max_val - min_val)
+    # Pasar elementos a buckets
+    for i, value in enumerate(arr):
+        index = min(num_buckets - 1, max(0, int((value - min_val) / range_val * num_buckets)))
+        buckets[index].append(value)
+        yield ("to_bucket", arr.copy(), i, index)
+    # Ordenar buckets
+    sorted_arr = []
+    for bucket in buckets:
+        bucket.sort()
+        for value in bucket:
+            sorted_arr.append(value)
+    # Reconstruir array
+    for i, value in enumerate(sorted_arr):
+        arr[i] = value
+        yield ("rebuild", arr.copy(), i, i)

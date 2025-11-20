@@ -43,7 +43,10 @@ class Algorithm_Selector(QWidget):
 
         name, alg = get_algorithm(algorithm_key)
 
-        arr = list(range(1, n + 1))
+        if name == "Bucket Sort":
+            arr = list(random.random() for _ in range(n))
+        else:
+            arr = list(range(1, n + 1))
         random.shuffle(arr)
 
         generator = alg(arr)
