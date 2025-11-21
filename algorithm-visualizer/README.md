@@ -28,3 +28,4 @@ python3 src/main.py
 - Bucket Sort
 - Counting Sort
 - Radix Sort
+- Heap Sort
