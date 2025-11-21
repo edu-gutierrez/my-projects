@@ -189,21 +189,20 @@ def bucket_sort(arr):
     max_val = max(arr)
     min_val = min(arr)
     range_val = (max_val - min_val)
-    # Pasar elementos a buckets
+
     for i, value in enumerate(arr):
         index = min(num_buckets - 1, max(0, int((value - min_val) / range_val * num_buckets)))
         buckets[index].append(value)
         yield ("to_bucket", arr.copy(), i, index)
-    # Ordenar buckets
-    sorted_arr = []
-    for bucket in buckets:
+
+    index = 0
+
+    for bucket_idx, bucket in enumerate(buckets):
         bucket.sort()
         for value in bucket:
-            sorted_arr.append(value)
-    # Reconstruir array
-    for i, value in enumerate(sorted_arr):
-        arr[i] = value
-        yield ("rebuild", arr.copy(), i, i)
+            arr[index] = value
+            yield ("rebuild", arr.copy(), index, bucket_idx)
+            index += 1 
 
 def counting_sort(arr):
     n = len(arr)
@@ -224,3 +223,26 @@ def counting_sort(arr):
             index += 1
             count[value] -= 1
 
+def radix_sort(arr):
+    n = len(arr)
+    if n <= 1:
+        return
+    max_val = max(arr)
+    exp = 1
+
+    while max_val // exp > 0:
+        buckets = [[] for _ in range(10)]
+        
+        for i, value in enumerate(arr):
+            index = (value // exp) % 10
+            buckets[index].append(value)
+            yield("to_bucket", arr.copy(), i, index)
+        
+        index = 0
+        for i, bucket in enumerate(buckets):
+            for value in bucket:
+                arr[index] = value
+                yield("rebuild", arr.copy(), index, i)
+                index += 1
+        
+        exp *= 10

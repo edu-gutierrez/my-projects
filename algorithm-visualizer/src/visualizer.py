@@ -20,14 +20,18 @@ class SortingVisualizer:
 
         self.brushes = [pg.mkBrush("w")] * len(arr)
 
-        if algorithm_name == "Bucket Sort" or algorithm_name == "Counting Sort":
+        if algorithm_name == "Bucket Sort" or algorithm_name == "Counting Sort" or algorithm_name == "Radix Sort":
             self.win.nextRow()
-            self.plot_buckets = self.win.addPlot(row=1, col=0)
-            if algorithm_name == "Bucket Sort":
-                 self.plot_buckets.setXRange(0, len(arr) // 10 - 1)
-            elif algorithm_name == "Counting Sort":
-                 self.plot_buckets.setXRange(1, len(arr) // 10)
+            self.plot_buckets = self.win.addPlot(row=1, col=0)            
             self.plot_buckets.setYRange(0, max(len(arr) // 2, 15))
+            if algorithm_name == "Bucket Sort":
+                self.plot_buckets.setXRange(0, len(arr) // 10 - 1)
+            elif algorithm_name == "Counting Sort":
+                self.plot_buckets.setXRange(1, len(arr) // 10)
+            elif algorithm_name == "Radix Sort":
+                self.plot_buckets.setXRange(0, 9)
+                self.plot_buckets.setYRange(0, len(arr))               
+
             self.bucket_heights = [0] * len(arr)
             self.bucket_bars = pg.BarGraphItem(
                 x=list(range(len(arr))),
@@ -59,14 +63,16 @@ class SortingVisualizer:
             elif len(frame) == 4:
                 event, arr, i, target = frame
                 if event == "to_bucket":
-                    val = arr[i]
+                    self.val = arr[i]
                     self.brushes[i] = pg.mkBrush('y')
-                    self.bucket_content[target].append(val)
+                    self.bucket_content[target].append(self.val)
                     self.bucket_heights[target] += 1
                     self.bucket_bars.setOpts(height=self.bucket_heights)
                 elif event == "rebuild":
                     self.val = arr[i]
                     self.brushes[i] = pg.mkBrush('c')
+                    self.bucket_heights[target] -= 1
+                    self.bucket_bars.setOpts(height=self.bucket_heights)
                     self.bars.setOpts(height=arr, brushes=self.brushes)
             else:
                 arr, i, j = frame

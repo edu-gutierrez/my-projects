@@ -27,3 +27,4 @@ python3 src/main.py
 - Random Sort
 - Bucket Sort
 - Counting Sort
+- Radix Sort
