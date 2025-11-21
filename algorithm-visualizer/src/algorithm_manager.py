@@ -11,6 +11,7 @@ ALGORITHMS = {
     "8": ("Bogo Sort", sorting_algorithms.bogo_sort),
     "9": ("Random Sort", sorting_algorithms.random_sort),
     "10": ("Bucket Sort", sorting_algorithms.bucket_sort),
+    "11": ("Counting Sort", sorting_algorithms.counting_sort),
 }
 
 ALGORITHMS_QT = {
@@ -24,6 +25,7 @@ ALGORITHMS_QT = {
     "Bogo Sort": "8",
     "Random Sort": "9",
     "Bucket Sort" : "10",
+    "Counting Sort" : "11",
 }
 
 def get_algorithm(choice: str):

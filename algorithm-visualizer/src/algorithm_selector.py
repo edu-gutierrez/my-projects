@@ -45,6 +45,8 @@ class Algorithm_Selector(QWidget):
 
         if name == "Bucket Sort":
             arr = list(random.random() for _ in range(n))
+        elif name == "Counting Sort":
+            arr = list(random.randint(1, n // 10) for _ in range(n))
         else:
             arr = list(range(1, n + 1))
         random.shuffle(arr)

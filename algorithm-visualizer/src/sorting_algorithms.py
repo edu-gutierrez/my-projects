@@ -204,3 +204,23 @@ def bucket_sort(arr):
     for i, value in enumerate(sorted_arr):
         arr[i] = value
         yield ("rebuild", arr.copy(), i, i)
+
+def counting_sort(arr):
+    n = len(arr)
+    if n <= 1:
+        return
+    max_val = max(arr)
+    count = [0] * (max_val + 1)
+
+    for i, value in enumerate(arr):
+        count[value] += 1
+        yield ("to_bucket", arr.copy(), i, value)
+
+    index = 0
+    for value in range(max_val + 1):
+        while count[value] > 0:
+            arr[index] = value
+            yield ("rebuild", arr.copy(), index, value)
+            index += 1
+            count[value] -= 1
+

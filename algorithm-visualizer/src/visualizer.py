@@ -20,11 +20,14 @@ class SortingVisualizer:
 
         self.brushes = [pg.mkBrush("w")] * len(arr)
 
-        if algorithm_name == "Bucket Sort":
+        if algorithm_name == "Bucket Sort" or algorithm_name == "Counting Sort":
             self.win.nextRow()
             self.plot_buckets = self.win.addPlot(row=1, col=0)
-            self.plot_buckets.setXRange(-1, len(arr) // 10)
-            self.plot_buckets.setYRange(0, max(len(arr) // 2, 10))
+            if algorithm_name == "Bucket Sort":
+                 self.plot_buckets.setXRange(0, len(arr) // 10 - 1)
+            elif algorithm_name == "Counting Sort":
+                 self.plot_buckets.setXRange(1, len(arr) // 10)
+            self.plot_buckets.setYRange(0, max(len(arr) // 2, 15))
             self.bucket_heights = [0] * len(arr)
             self.bucket_bars = pg.BarGraphItem(
                 x=list(range(len(arr))),
@@ -34,6 +37,7 @@ class SortingVisualizer:
             )
             self.plot_buckets.addItem(self.bucket_bars)
             self.bucket_content = [[] for _ in range(len(arr))]
+
 
         self.timer = QTimer()
         self.timer.timeout.connect(self.update)

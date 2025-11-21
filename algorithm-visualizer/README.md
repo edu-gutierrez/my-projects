@@ -14,6 +14,8 @@ python3 src/main.py
 
 ## Algoritmos implementados
 
+### Sorting
+
 - Bubble Sort
 - Cocktail Sort
 - Insertion Sort
@@ -23,3 +25,5 @@ python3 src/main.py
 - Quick Sort
 - Bogo Sort
 - Random Sort
+- Bucket Sort
+- Counting Sort
