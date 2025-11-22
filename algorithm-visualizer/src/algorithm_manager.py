@@ -14,6 +14,7 @@ ALGORITHMS = {
     "11": ("Counting Sort", sorting_algorithms.counting_sort),
     "12": ("Radix Sort", sorting_algorithms.radix_sort),
     "13": ("Heap Sort", sorting_algorithms.heap_sort),
+    "14": ("Shell Sort", sorting_algorithms.shell_sort),
 }
 
 ALGORITHMS_QT = {
@@ -30,6 +31,7 @@ ALGORITHMS_QT = {
     "Counting Sort" : "11",
     "Radix Sort" : "12",
     "Heap Sort" : "13",
+    "Shell Sort" : "14",
 }
 
 def get_algorithm(choice: str):

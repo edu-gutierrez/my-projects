@@ -275,3 +275,22 @@ def _sink(arr, n, i):
         yield arr.copy(), i, largest 
 
         yield from _sink(arr, n, largest)
+
+def shell_sort(arr):
+    n = len(arr)
+    jump = n // 2
+    
+    while jump > 0:
+        for i in range(jump, n):
+            temp = arr[i]
+            j = i
+
+            while j >= jump and arr[j - jump] > temp:
+                arr[j] = arr[j - jump]
+                yield arr.copy(), j, j - jump
+                j -= jump
+            
+            arr[j] = temp
+            yield arr.copy(), j, j
+        
+        jump //= 2

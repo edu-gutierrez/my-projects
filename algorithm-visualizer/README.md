@@ -29,3 +29,4 @@ python3 src/main.py
 - Counting Sort
 - Radix Sort
 - Heap Sort
+- Shell Sort
