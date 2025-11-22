@@ -294,3 +294,25 @@ def shell_sort(arr):
             yield arr.copy(), j, j
         
         jump //= 2
+
+def comb_sort(arr): # Es el CombSort11
+    n = len(arr)
+    gap = n
+    sorted = False
+
+    while not sorted or gap > 1:
+        if gap > 1:
+            gap = int(gap / 1.3)
+            if gap == 10 or gap == 9:
+                gap = 11
+
+        i = 0
+        sorted = True
+        
+        while i + gap < n:
+            if arr[i] > arr[i + gap]:
+                arr[i], arr[i + gap] = arr[i + gap], arr[i]
+                yield arr.copy(), i, i + gap
+                sorted = False
+            i += 1
+

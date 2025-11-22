@@ -30,3 +30,4 @@ python3 src/main.py
 - Radix Sort
 - Heap Sort
 - Shell Sort
+- Comb Sort
