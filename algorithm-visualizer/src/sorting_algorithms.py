@@ -316,3 +316,27 @@ def comb_sort(arr): # Es el CombSort11
                 sorted = False
             i += 1
 
+def pancake_sort(arr):
+    n = len(arr)
+    while n > 1:
+        max_idx = _max_index(arr, n)
+        if max_idx != n-1:
+            if max_idx != 0:
+                yield from _flip(arr, max_idx)
+            yield from _flip(arr, n-1)
+        n -= 1
+
+def _max_index(arr, k):
+    index = 0
+    for i in range(k):
+        if arr[i] > arr[index]:
+            index = i
+    return index
+
+def _flip(arr, k):
+    left = 0
+    while left < k:
+        arr[left], arr[k] = arr[k], arr[left]
+        yield arr.copy(), left, k
+        k -= 1
+        left += 1

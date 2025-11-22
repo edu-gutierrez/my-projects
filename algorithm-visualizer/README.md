@@ -31,3 +31,4 @@ python3 src/main.py
 - Heap Sort
 - Shell Sort
 - Comb Sort
+- Pancake Sort

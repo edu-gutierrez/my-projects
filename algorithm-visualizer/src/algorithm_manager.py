@@ -16,6 +16,7 @@ ALGORITHMS = {
     "13": ("Heap Sort", sorting_algorithms.heap_sort),
     "14": ("Shell Sort", sorting_algorithms.shell_sort),
     "15": ("Comb Sort", sorting_algorithms.comb_sort),
+    "16": ("Pancake Sort", sorting_algorithms.pancake_sort),
 }
 
 ALGORITHMS_QT = {
@@ -34,6 +35,7 @@ ALGORITHMS_QT = {
     "Heap Sort" : "13",
     "Shell Sort" : "14",
     "Comb Sort" : "15",
+    "Pancake Sort": "16",
 }
 
 def get_algorithm(choice: str):
