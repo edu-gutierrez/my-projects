@@ -12,7 +12,9 @@ def bubble_sort(arr):
         if not swapped:
             yield arr.copy(), i, i
             break
-
+    for i in range(n):
+        yield arr.copy(), i, "sorted"
+    
 def cocktail_sort(arr):
     n = len(arr)
     left = 0
@@ -36,6 +38,8 @@ def cocktail_sort(arr):
                 yield arr.copy(), i, i+1
         right = new_right
         yield arr.copy(), left, right
+    for i in range(n):
+        yield arr.copy(), i, "sorted"
 
 def insertion_sort(arr):
     n = len(arr)
@@ -50,10 +54,14 @@ def insertion_sort(arr):
             j-=1
         arr[j+1] = key
         yield arr.copy(), j+1, i
+    for i in range(n):
+        yield arr.copy(), i, "sorted"
 
 def merge_sort(arr):
     arr = list(arr)
     yield from _merge_sort(arr, 0, len(arr) - 1)
+    for i in range(len(arr)):
+        yield arr.copy(), i, "sorted"
     return
 
 def _merge_sort(arr, left, right):
@@ -105,6 +113,8 @@ def gnome_sort(arr):
             i -= 1
             if i == 0:
                 i = 1
+    for i in range(n):
+        yield arr.copy(), i, "sorted"
 
 def selection_sort(arr):
     n = len(arr)
@@ -118,10 +128,14 @@ def selection_sort(arr):
         
         arr[i], arr[min] = arr[min], arr[i]
         yield arr.copy(), i, min
+    for i in range(n):
+        yield arr.copy(), i, "sorted"
 
 def quick_sort(arr):
     arr = list(arr)
     yield from _quick_sort(arr, 0, len(arr) - 1)
+    for i in range(len(arr)):
+        yield arr.copy(), i, "sorted"
     return
 
 def _quick_sort(arr, low, high):
@@ -158,6 +172,8 @@ def bogo_sort(arr):
     while not _is_sorted(arr):
         random.shuffle(arr)
         yield arr.copy()
+    for i in range(len(arr)):
+        yield arr.copy(), i, "sorted"
 
 def _is_sorted(arr):
     for i in range(len(arr) - 1):
@@ -175,6 +191,8 @@ def random_sort(arr):
             arr[i], arr[j] = arr[j], arr[i]
             yield arr.copy(), i, j
     yield arr.copy()
+    for i in range(n):
+        yield arr.copy(), i, "sorted"
 
 def bucket_sort(arr):
     n = len(arr)
@@ -203,6 +221,8 @@ def bucket_sort(arr):
             arr[index] = value
             yield ("rebuild", arr.copy(), index, bucket_idx)
             index += 1 
+    for i in range(n):
+        yield arr.copy(), i, "sorted"
 
 def counting_sort(arr):
     n = len(arr)
@@ -222,6 +242,8 @@ def counting_sort(arr):
             yield ("rebuild", arr.copy(), index, value)
             index += 1
             count[value] -= 1
+    for i in range(n):
+        yield arr.copy(), i, "sorted"
 
 def radix_sort(arr):
     n = len(arr)
@@ -246,6 +268,8 @@ def radix_sort(arr):
                 index += 1
         
         exp *= 10
+    for i in range(n):
+        yield arr.copy(), i, "sorted"
 
 def heap_sort(arr):
     n = len(arr)
@@ -258,6 +282,8 @@ def heap_sort(arr):
         yield arr.copy(), i, 0
         
         yield from _sink(arr, i, 0)
+    for i in range(n):
+        yield arr.copy(), i, "sorted"
 
 def _sink(arr, n, i):
     largest = i
@@ -294,6 +320,8 @@ def shell_sort(arr):
             yield arr.copy(), j, j
         
         jump //= 2
+    for i in range(n):
+        yield arr.copy(), i, "sorted"
 
 def comb_sort(arr): # Es el CombSort11
     n = len(arr)
@@ -315,6 +343,8 @@ def comb_sort(arr): # Es el CombSort11
                 yield arr.copy(), i, i + gap
                 sorted = False
             i += 1
+    for i in range(n):
+        yield arr.copy(), i, "sorted"
 
 def pancake_sort(arr):
     n = len(arr)
@@ -325,6 +355,8 @@ def pancake_sort(arr):
                 yield from _flip(arr, max_idx)
             yield from _flip(arr, n-1)
         n -= 1
+    for i in range(len(arr)):
+        yield arr.copy(), i, "sorted"
 
 def _max_index(arr, k):
     index = 0

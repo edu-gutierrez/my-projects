@@ -32,3 +32,7 @@ python3 src/main.py
 - Shell Sort
 - Comb Sort
 - Pancake Sort
+
+### Pathfinding
+
+- BFS

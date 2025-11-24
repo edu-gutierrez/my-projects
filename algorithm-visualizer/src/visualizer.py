@@ -47,7 +47,7 @@ class SortingVisualizer:
         self.timer.timeout.connect(self.update)
 
     def start(self):
-        self.timer.start(20)
+        self.timer.start(10)
         if not self.win.isVisible():
             self.win.show()
 
@@ -58,7 +58,7 @@ class SortingVisualizer:
             if isinstance(frame, list):
                 arr = frame
                 for k in range(len(arr)):
-                    self.brushes[k] = pg.mkBrush("w")
+                    self.brushes[k] = pg.mkBrush("w")           
 
             elif len(frame) == 4:
                 event, arr, i, target = frame
@@ -74,14 +74,19 @@ class SortingVisualizer:
                     self.bucket_heights[target] -= 1
                     self.bucket_bars.setOpts(height=self.bucket_heights)
                     self.bars.setOpts(height=arr, brushes=self.brushes)
+            
             else:
                 arr, i, j = frame
+                
+                if j == "sorted":
+                    self.brushes[i] = pg.mkBrush("g")
 
-                for k in range(len(arr)):
-                    self.brushes[k] = pg.mkBrush("w")
+                else:
+                    for k in range(len(arr)):
+                        self.brushes[k] = pg.mkBrush("w")
 
-                self.brushes[i] = pg.mkBrush("r")
-                self.brushes[j] = pg.mkBrush("r")
+                    self.brushes[i] = pg.mkBrush("r")
+                    self.brushes[j] = pg.mkBrush("r")
 
             self.bars.setOpts(height=arr, brushes=self.brushes)
 
