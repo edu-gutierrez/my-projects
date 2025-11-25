@@ -1,4 +1,3 @@
-import numpy as np
 import random
 from collections import deque
 
@@ -20,7 +19,7 @@ def bfs(grid, start, end):
     visited.add(start)
     
     parent_map = {} 
-    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    directions = [(1, 0), (0,-1), (0, 1), (-1, 0)]
     found = False
 
     while queue:
@@ -51,3 +50,48 @@ def bfs(grid, start, end):
         yield ("path", start[0], start[1]) 
     else:
         print("No hay camino")
+
+def dfs(grid, start, end):
+    rows, cols = grid.shape
+    stack = [start]
+    visited = set() 
+    
+    parent_map = {} 
+    directions = [(1, 0), (0, -1), (0, 1), (-1, 0)]
+    found = False
+
+    while stack:
+        current = stack.pop()
+        row, column = current
+
+        if current in visited:
+            continue
+        
+        visited.add(current)
+        
+        if current != start and current != end:
+             yield ("visit", row, column)
+
+        if current == end:
+            found = True
+            break 
+
+        for dr, dc in directions:
+            newr, newc = row + dr, column + dc
+
+            if 0 <= newr < rows and 0 <= newc < cols:
+                if grid[newr, newc] != 1 and (newr, newc) not in visited:
+                    stack.append((newr, newc))
+                    
+                    if (newr, newc) not in parent_map:
+                        parent_map[(newr, newc)] = current
+
+    if found:
+        curr = end
+        while curr != start:
+            yield ("path", curr[0], curr[1]) 
+            curr = parent_map[curr]
+        yield ("path", start[0], start[1]) 
+    else:
+        print("No hay camino")
+        
