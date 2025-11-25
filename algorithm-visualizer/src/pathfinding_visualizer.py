@@ -3,11 +3,12 @@ from PyQt5.QtCore import QTimer
 import numpy as np
 
 class PathfindingVisualizer:
-    def __init__(self, rows, columns):
+    def __init__(self, rows, columns, algorithm_name):
         self.rows = rows
         self.columns = columns
+        self.algorithm_name = algorithm_name
 
-        self.win = pg.GraphicsLayoutWidget(show=True, title="BFS Pathfinding")
+        self.win = pg.GraphicsLayoutWidget(show=True, title=f"{algorithm_name}")
         self.plot = self.win.addPlot()
         
         self.plot.setAspectLocked(True) 
@@ -22,9 +23,9 @@ class PathfindingVisualizer:
         color = np.array([
             [255, 255, 255, 255],
             [0, 0, 0, 255],
-            [0, 255, 0, 255],
+            [255, 127, 0, 255],
             [0, 0, 255, 255],
-            [255, 255, 0, 255]
+            [0, 200, 200, 255]
         ], dtype=np.ubyte)
 
         map = pg.ColorMap(pos, color)

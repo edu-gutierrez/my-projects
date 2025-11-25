@@ -1,10 +1,10 @@
 import sys
 from PyQt5.QtWidgets import QApplication
-from pathfinding_selector import Pathfinding_Selector
+from sorting_selector import Sorting_Selector
 
 def main():
     app = QApplication([])
-    selector = Pathfinding_Selector()
+    selector = Sorting_Selector()
     selector.show()
     sys.exit(app.exec_())
 
