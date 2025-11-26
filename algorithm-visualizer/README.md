@@ -38,3 +38,4 @@ python3 src/main.py
 - BFS
 - DFS
 - A*
+- Greedy BFS
