@@ -5,6 +5,7 @@ ALGORITHMS = {
     "2": ("DFS", pathfinding_algorithms.dfs),
     "3": ("A*",  pathfinding_algorithms.a_star),
     "4": ("GreedyBFS", pathfinding_algorithms.greedy_bfs),
+    "5": ("BidireccionalBFS", pathfinding_algorithms.bidireccional_bfs),
 }
 
 ALGORITHMS_QT = {
@@ -12,6 +13,7 @@ ALGORITHMS_QT = {
     "DFS": "2",
     "A*":  "3",
     "GreedyBFS": "4",
+    "BidireccionalBFS": "5",
 }
 
 def get_algorithm(choice: str):

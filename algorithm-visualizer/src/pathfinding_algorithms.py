@@ -233,3 +233,82 @@ def greedy_bfs(grid, start, end):
         yield ("path", start[0], start[1])
     else:
         print("No hay camino")
+
+def bidireccional_bfs(grid, start, end):
+    rows, cols = grid.shape
+   
+    q_start = deque([start])
+    visited_start = {start}
+    parent_start = {}
+    parent_start[start] = None
+    
+    q_end = deque([end])
+    visited_end = {end}
+    parent_end = {}
+    parent_end[end] = None
+    
+    directions = [(1, 0), (0, -1), (0, 1), (-1, 0)]
+    
+    intersect_node = None
+
+    while q_start and q_end:
+        
+        if q_start:
+            current = q_start.popleft()
+            
+            if current != start and current != end:
+                yield ("visit", current[0], current[1])
+            
+            for dr, dc in directions:
+                newr, newc = current[0] + dr, current[1] + dc
+                
+                if newr < rows and  newr >= 0 and newc < cols and newc >= 0:
+                    if grid[newr, newc] != 1 and (newr, newc) not in visited_start:
+                        
+                        if (newr, newc) in visited_end:
+                            parent_start[(newr, newc)] = current
+                            intersect_node = (newr, newc)
+                            q_start = q_end = None 
+                            break
+                        
+                        visited_start.add((newr, newc))
+                        parent_start[(newr, newc)] = current
+                        q_start.append((newr, newc))
+
+        if intersect_node: break # Para no hacer el 2 si el 1 ya encontró la intersección
+
+        if q_end:
+            current = q_end.popleft()
+            
+            if current != start and current != end:
+                yield ("close", current[0], current[1])
+                
+            for dr, dc in directions:
+                newr, newc = current[0] + dr, current[1] + dc
+                
+                if newr < rows and  newr >= 0 and newc < cols and newc >= 0:
+                    if grid[newr, newc] != 1 and (newr, newc) not in visited_end:
+                        
+                        if (newr, newc) in visited_start:
+                            parent_end[(newr, newc)] = current
+                            intersect_node = (newr, newc)
+                            q_start = q_end = None
+                            break
+                        
+                        visited_end.add((newr, newc))
+                        parent_end[(newr, newc)] = current
+                        q_end.append((newr, newc))
+
+    if intersect_node:
+        curr = intersect_node
+        while curr is not None:
+            yield ("path", curr[0], curr[1])
+            curr = parent_start.get(curr)
+            
+        curr = intersect_node
+        while curr is not None:
+            yield ("path", curr[0], curr[1])
+            curr = parent_end.get(curr)
+            
+    else:
+        print("No hay camino")

@@ -39,3 +39,4 @@ python3 src/main.py
 - DFS
 - A*
 - Greedy BFS
+- Bidireccional BFS
