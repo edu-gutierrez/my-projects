@@ -19,19 +19,20 @@ class PathfindingVisualizer:
         self.img_item = pg.ImageItem(self.grid_data)
         self.plot.addItem(self.img_item)
 
-        pos = np.array([0.0, 0.25, 0.5, 0.75, 1.0])
+        pos = np.array([0.0, 0.2, 0.4, 0.6, 0.8, 1.0])
         color = np.array([
             [255, 255, 255, 255],
             [0, 0, 0, 255],
             [255, 127, 0, 255],
             [0, 0, 255, 255],
-            [0, 200, 200, 255]
+            [0, 200, 200, 255],
+            [128, 0, 128, 255]
         ], dtype=np.ubyte)
 
         map = pg.ColorMap(pos, color)
         lut = map.getLookupTable(0.0, 1.0, 256)
         self.img_item.setLookupTable(lut)
-        self.img_item.setLevels([0, 4])
+        self.img_item.setLevels([0, 5])
 
         self.timer = QTimer()
         self.timer.timeout.connect(self.update)
@@ -49,6 +50,8 @@ class PathfindingVisualizer:
                 self.grid_data[r, c] = 2 
             elif event == "path":
                 self.grid_data[r, c] = 4 
+            elif event == "close":
+                self.grid_data[r, c] = 5
             
             self.img_item.setImage(self.grid_data, autoLevels=False)
             

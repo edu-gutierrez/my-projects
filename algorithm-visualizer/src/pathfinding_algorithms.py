@@ -1,4 +1,5 @@
 import random
+import heapq
 from collections import deque
 
 def generate_maze(grid, probability):
@@ -95,3 +96,81 @@ def dfs(grid, start, end):
     else:
         print("No hay camino")
         
+def a_star(grid, start, end):
+    rows, cols = grid.shape
+    
+    count = 0 # Para desempatar
+    open_set = []
+    heapq.heappush(open_set, (0, count, start))
+    
+    open_set_hash = {start} #Para que acceder a un elemento sea O(1) y no O(n)
+    closed_set = set()
+
+    parent_map = {}
+    g_score = {} 
+    f_score = {}
+
+    for r in range(rows):
+        for c in range(cols):
+            node = (r, c)
+            g_score[node] = float("inf")
+            f_score[node] = float("inf")
+
+    g_score[start] = 0
+    f_score[start] = _heuristic(start, end)
+    
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    found = False
+
+    while open_set:
+        current = heapq.heappop(open_set)[2]
+        open_set_hash.remove(current)
+        
+        if current in closed_set:
+            continue
+        closed_set.add(current)
+
+        row, col = current
+
+        if current != start and current != end:
+            yield("close", row, col)
+
+        if current == end:
+            found = True
+            break
+
+        for dr, dc in directions:
+            newr, newc = row + dr, col + dc
+
+            if newr < rows and newr >= 0 and newc < cols and newc >= 0:
+                if grid[newr, newc] == 1 or (newr, newc) in closed_set:
+                    continue
+
+                tmp_g_score = g_score[current] + 1
+
+                if tmp_g_score < g_score[(newr, newc)]:
+                    parent_map[(newr, newc)] = current
+                    g_score[(newr, newc)] = tmp_g_score
+                    f_score[(newr, newc)] = tmp_g_score + _heuristic((newr, newc), end)
+                    
+                    if (newr, newc) not in open_set_hash:
+                        count += 1
+                        heapq.heappush(open_set, (f_score[(newr, newc)], count, (newr, newc)))
+                        open_set_hash.add((newr, newc))
+                        
+                        if (newr, newc) != end:
+                            yield ("visit", newr, newc)
+
+    if found:
+        curr = end
+        while curr in parent_map:
+            yield ("path", curr[0], curr[1])
+            curr = parent_map[curr]
+        yield ("path", start[0], start[1])
+    else:
+        print("No hay camino")
+
+def _heuristic(p1, p2):
+    x1, y1 = p1
+    x2, y2 = p2
+    return abs(x1 - x2) + abs(y1 - y2)

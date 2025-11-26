@@ -3,11 +3,13 @@ import pathfinding_algorithms
 ALGORITHMS = {
     "1": ("BFS", pathfinding_algorithms.bfs),
     "2": ("DFS", pathfinding_algorithms.dfs),
+    "3": ("A*",  pathfinding_algorithms.a_star),
 }
 
 ALGORITHMS_QT = {
     "BFS": "1",
     "DFS": "2",
+    "A*":  "3",
 }
 
 def get_algorithm(choice: str):

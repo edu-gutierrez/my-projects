@@ -36,3 +36,5 @@ python3 src/main.py
 ### Pathfinding
 
 - BFS
+- DFS
+- A*
