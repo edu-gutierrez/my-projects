@@ -1,26 +1,39 @@
 # Tres en Raya (Tic-Tac-Toe) - Versión gráfica
 
-Este repositorio contiene la implementación del juego clásico Tres en Raya (Tic-Tac-Toe) diseñado gráficamente.
+Este repositorio contiene la implementación del juego clásico Tres en Raya (Tic-Tac-Toe) en C++ utilizando la librería **SFML**.
+
+Este proyecto reutiliza la lógica de la versión de terminal separando la lógica del programa de la capa de presentación.
 
 ---
 
-## Características del Juego
+## Características Principales
 
-* **Modos de Juego:** Jugador vs Jugador y Jugador vs IA (con 2 niveles de dificultad).
+* **Motor Gráfico:** Renderizado 2D mediante SFML.
 * **Inteligencia Artificial:** Implementación completa del algoritmo **Minimax**.
-* **Entorno:** SFML.
+* **Arquitectura:** Diseño modular. La lógica del juego ignora que está siendo pintada en una ventana gráfica.
+
+## Demo Visual
+
+![Gameplay Demo](./Gameplay.gif)
+
+---
 
 ## Compilación y Ejecución
 
-1.  **Compilar (Usando el Makefile):**
+Requisitos: `g++`, `make` y `sfml`.
+
+1. **Compilar (Usando el Makefile):**
+
     ```bash
     make
     ```
 
-2.  **Ejecutar el Juego:**
+2. **Ejecutar el Juego:**
+
     ```bash
     ./TicTacToeUI
     ```
+
 ---
 
 ## Estructura y Documentación Técnica
@@ -36,6 +49,6 @@ La lógica de la IA y las funciones principales del juego están completamente d
 
 ### Enlace a la Documentación (Doxygen)
 
-Para una vista detallada de todas las funciones, el flujo de la IA y los parámetros:
+Para una vista detallada de todas las funciones, el flujo de la IA y el renderizado descargue el repositorio y acceda al archivo:
 
 [**[Ver Documentación Técnica Completa Aquí]**](html/index.html)

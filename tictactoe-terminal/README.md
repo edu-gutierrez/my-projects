@@ -6,21 +6,47 @@ Este repositorio contiene la implementación del juego clásico Tres en Raya (Ti
 
 ## Características del Juego
 
-* **Modos de Juego:** Jugador vs Jugador y Jugador vs IA (con 2 niveles de dificultad).
+* **Modos de Juego:** Jugador vs Jugador y Jugador vs IA.
 * **Inteligencia Artificial:** Implementación completa del algoritmo **Minimax**.
 * **Entorno:** Consola.
 
+## Sobre la IA
+
+* **Nivel Fácil:** Movimientos aleatorios.
+* **Nivel Imposible:** Algoritmo **Minimax**. La IA evalúa todos los estados futuros posibles del tablero para encontrar el mejor movimiento.
+
 ## Compilación y Ejecución
 
-1.  **Compilar (Usando el Makefile):**
+Requisitos: `g++` y `make`.
+
+1. **Compilar (Usando el Makefile):**
+
     ```bash
     make
     ```
 
-2.  **Ejecutar el Juego:**
+2. **Ejecutar el Juego:**
+
     ```bash
-    ./Tictactoe_terminal
+    ./TicTacToeUI
     ```
+
+---
+
+## Ejemplo de ejecución
+
+```text
+IA ha jugado en: (0, 2)
+Turno de 'X'
+Introduzca posicion(Fila, Columna):
+   0   1   2
+0  O | . | O
+  -----------
+1  . | X | .
+  -----------
+2  . | . | X
+```
+
 ---
 
 ## Estructura y Documentación Técnica
@@ -35,6 +61,6 @@ La lógica de la IA y las funciones principales del juego están completamente d
 
 ### Enlace a la Documentación (Doxygen)
 
-Para una vista detallada de todas las funciones, el flujo de la IA y los parámetros:
+Para una vista detallada de todas las funciones, el flujo de la IA y los parámetros descargue el repositorio y acceda al archivo:
 
 [**[Ver Documentación Técnica Completa Aquí]**](html/index.html)
