@@ -67,6 +67,28 @@ class Launcher(QWidget):
                                     """)
         self.btn_path.clicked.connect(self.launch_pathfinding)
         layout.addWidget(self.btn_path)
+
+        self.btn_sorting = QPushButton("Algoritmos de Clustering")
+        self.btn_sorting.setMinimumHeight(50)
+        self.btn_sorting.setStyleSheet( """
+                                        QPushButton {
+                                            background-color: #00ffff;
+                                            color: #000000;
+                                            border-radius: 5px;
+                                            font-size: 14px;
+                                            font-weight: bold;
+                                            padding: 10px;
+                                        }
+                                        QPushButton:hover {
+                                            background-color: #00bfbf;
+                                        }
+                                        QPushButton:pressed {
+                                            background-color: #008080;
+                                            color: #000000;
+                                        }
+                                        """)
+        self.btn_sorting.clicked.connect(self.launch_clustering)
+        layout.addWidget(self.btn_sorting)
         
         self.setLayout(layout)
 
@@ -77,6 +99,10 @@ class Launcher(QWidget):
     def launch_pathfinding(self):
         print("Lanzando Pathfinding...")
         subprocess.Popen([sys.executable, "main_pathfinding.py"])
+    
+    def launch_clustering(self):
+        print("Lanzando Clustering...")
+        subprocess.Popen([sys.executable, "main_clustering.py"])
 
 if __name__ == "__main__":
     app = QApplication([])
