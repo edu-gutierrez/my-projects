@@ -63,7 +63,7 @@ class ClusteringVisualizer:
                 elif label == -2:
                     c = (0, 0, 0)
                 else:
-                    c = self.colors[label]
+                    c = self.colors[label % len(self.colors)]
                 new_brushes.append(pg.mkBrush(c))
 
             self.scatter_data.setBrush(new_brushes)
