@@ -143,3 +143,51 @@ def hierarchical(data, k):
         yield ("update", labels, fusion_centers)
 
     yield ("done", labels, None)
+
+def mean_shift(data, bandwidth):
+    n_points = len(data)
+    
+    # Cada punto es un centroide
+    centroids = np.copy(data)
+    labels = np.zeros(n_points, dtype=int)
+    yield ("init", labels, centroids)
+    
+    max_iterations = 100
+    for _ in range(max_iterations):
+        new_centroids = np.copy(centroids)
+        
+        # Buscamos los vecinos que están dentro del radio y movemos el centroide hacia los vecinos
+        for i in range(n_points):
+            dist = np.linalg.norm(data - centroids[i], axis=1)
+            points_within = data[dist < bandwidth]
+        
+            if len(points_within) > 0:
+                new_centroids[i] = np.mean(points_within, axis=0)
+    
+        yield ("update", labels, new_centroids)
+        
+        # Miramos si ya no cambia casi nada el centroide
+        if np.allclose(centroids, new_centroids, 0.001):
+            break
+            
+        centroids = new_centroids
+
+    unique_centroids = []
+    final_labels = np.zeros(n_points, dtype=int)
+    
+    # Buscamos el grupo de cada centroide y se lo asignamos
+    for i in range(n_points):
+        my_centroid = centroids[i]
+        found_group = False
+        
+        for group_id, group_center in enumerate(unique_centroids):
+            if np.linalg.norm(my_centroid - group_center) < 1.0:
+                final_labels[i] = group_id
+                found_group = True
+                break
+        
+        if not found_group:
+            unique_centroids.append(my_centroid)
+            final_labels[i] = len(unique_centroids) - 1
+            
+    yield ("done", final_labels, np.array(unique_centroids))

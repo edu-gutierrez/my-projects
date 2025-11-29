@@ -194,14 +194,22 @@ class Clustering_Selector(QWidget):
     def update_ui(self):
         alg_text = self.algorithm_combo.currentText()
         
-        if "DBSCAN" in alg_text:
+        if alg_text == "DBSCAN":
             self.k_label.setText("Min Sample:")
             
             self.k_spin.setRange(2, 50)
             self.k_spin.setValue(4)
             self.e_label.show()
             self.e_spin.show()
-            
+        elif alg_text == "Mean Shift":
+            self.e_label.setText("Radio:")
+            self.e_label.show()
+            self.e_spin.show()
+            self.e_spin.setRange(2, 50)
+            self.e_spin.setValue(20)
+            self.k_label.hide()
+            self.k_spin.hide()
+
         else:
             self.k_label.setText("Número de Clusters (K):")
             
@@ -266,6 +274,10 @@ class Clustering_Selector(QWidget):
         elif alg_key == "2": # DBSCAN
             epsilon = self.e_spin.value()
             generator = alg(data, epsilon, k_clusters)
+            self.visualizer = ClusteringVisualizer(data, name)
+        elif alg_key == "4": # Mean Shift
+            radio = self.e_spin.value()
+            generator = alg(data, radio)
             self.visualizer = ClusteringVisualizer(data, name)
 
         self.visualizer.win.show()
