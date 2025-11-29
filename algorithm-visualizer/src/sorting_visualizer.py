@@ -2,10 +2,11 @@ import pyqtgraph as pg
 from PyQt5.QtCore import QTimer
 
 class SortingVisualizer:
-    def __init__(self, arr, algorithm_name, generator):
+    def __init__(self, arr, algorithm_name, generator, t):
         self.arr = list(arr)
         self.algorithm_name = algorithm_name
         self.generator = generator
+        self.time = t
 
         self.win = pg.GraphicsLayoutWidget(show=False, title=f"{algorithm_name}")
 
@@ -47,7 +48,7 @@ class SortingVisualizer:
         self.timer.timeout.connect(self.update)
 
     def start(self):
-        self.timer.start(10)
+        self.timer.start(self.time)
         if not self.win.isVisible():
             self.win.show()
 

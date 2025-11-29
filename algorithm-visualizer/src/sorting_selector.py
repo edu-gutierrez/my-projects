@@ -1,5 +1,6 @@
 import random
-from PyQt5.QtWidgets import QWidget, QLabel, QComboBox, QSpinBox, QPushButton, QVBoxLayout, QHBoxLayout
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QWidget, QLabel, QComboBox, QSpinBox, QPushButton, QVBoxLayout, QHBoxLayout, QSlider
 from sorting_manager import get_algorithm, ALGORITHMS_QT
 from sorting_visualizer import SortingVisualizer
 
@@ -71,6 +72,17 @@ class Sorting_Selector(QWidget):
         n_layout.addWidget(self.n_spin)
         layout.addLayout(n_layout)
 
+        t_layout = QHBoxLayout()
+        t_label = QLabel("Delay:")
+        t_label.setStyleSheet("color: #000000; font-weight: bold;")
+        self.t_slider = QSlider(Qt.Horizontal)
+        self.t_slider.setMinimum(1)
+        self.t_slider.setMaximum(50)
+        self.t_slider.setValue(10)
+        t_layout.addWidget(t_label)
+        t_layout.addWidget(self.t_slider)
+        layout.addLayout(t_layout)
+
         self.start_button = QPushButton("Iniciar")
         self.start_button.setStyleSheet("""
                                         QPushButton {
@@ -98,6 +110,7 @@ class Sorting_Selector(QWidget):
         algorithm_text = self.algorithm_combo.currentText()
         algorithm_key = self.algorithms[algorithm_text]
         n = self.n_spin.value()
+        t = self.t_slider.value()
 
         name, alg = get_algorithm(algorithm_key)
 
@@ -111,5 +124,5 @@ class Sorting_Selector(QWidget):
 
         generator = alg(arr)
         print("Ejecutando "f"{name}...")
-        self.visualizer = SortingVisualizer(arr, name, generator)
+        self.visualizer = SortingVisualizer(arr, name, generator, t)
         self.visualizer.start()
