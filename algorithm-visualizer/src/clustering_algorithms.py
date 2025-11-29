@@ -41,3 +41,48 @@ def kmeans(data, k):
         labels = new_labels
 
     yield ("done", labels, centroids)
+
+def dbscan(data, eps, min_samples):
+    n_points = len(data)
+    
+    # Metemos -1 a los no visitados
+    labels = np.full(n_points, -1, dtype=int)
+    
+    cluster_id = 0
+    yield ("init", labels, None)
+    
+    for i in range(n_points):
+
+        if labels[i] == -1:
+            neighbors = _get_neighbors(data, i, eps)
+            
+            yield ("check", labels, [data[i]])
+            
+            if len(neighbors) < min_samples:
+                labels[i] = -2
+                yield ("noise", labels, [data[i]])
+            else: # Hemos encontrado  un centroide
+                labels[i] = cluster_id
+                yield from _expand_cluster(data, labels, neighbors, cluster_id, eps, min_samples)
+                cluster_id += 1
+
+    yield ("done", labels, None)
+
+def _expand_cluster(data, labels, neighbors, cluster_id, eps, min_samples):
+    i = 0
+    while i < len(neighbors):
+        point = neighbors[i]
+            
+        if labels[point] == -1 or labels[point] == -2:
+            labels[point] = cluster_id
+            yield ("expand", labels, [data[point]])
+
+            new_neighbors = _get_neighbors(data, point, eps)
+            if len(new_neighbors) >= min_samples:
+                neighbors = np.concatenate((neighbors, new_neighbors))
+        
+        i += 1
+
+def _get_neighbors(data, point, eps):
+    distances = np.linalg.norm(data - data[point], axis=1)
+    return np.where(distances <= eps)[0]

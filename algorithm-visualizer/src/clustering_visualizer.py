@@ -2,12 +2,11 @@ import pyqtgraph as pg
 from PyQt5.QtCore import QTimer
 
 class ClusteringVisualizer:
-    def __init__(self, data, k, algorithm_name):
+    def __init__(self, data, algorithm_name):
         self.data = data
-        self.k = k
         self.algorithm_name = algorithm_name
 
-        self.win = pg.GraphicsLayoutWidget(show=True, title=f"{algorithm_name} - K={k}")
+        self.win = pg.GraphicsLayoutWidget(show=True, title=f"{algorithm_name}")
         self.plot = self.win.addPlot()
         self.plot.setAspectLocked(True)
 
@@ -27,16 +26,16 @@ class ClusteringVisualizer:
         self.plot.addItem(self.scatter_centroids)
 
         self.colors = [
-            (255, 0, 0),    # Rojo
-            (0, 200, 0),    # Verde
-            (0, 0, 255),    # Azul
-            (255, 165, 0),  # Naranja
-            (255, 0, 255),  # Magenta
-            (0, 255, 255),  # Cyan
-            (128, 0, 128),  # Morado
-            (128, 128, 0),  # Oliva
-            (0, 128, 128),  # Teal
-            (128, 128, 128) # Gris
+            (255, 0, 0),
+            (0, 255, 0),
+            (0, 0, 255),
+            (255, 255, 0),
+            (255, 0, 255),
+            (0, 255, 255),
+            (128, 0, 128),
+            (128, 128, 0),
+            (0, 128, 128),
+            (128, 128, 128)
         ]
         
         self.brushes = [pg.mkBrush(128, 128, 128) for _ in range(len(data))]
@@ -48,7 +47,10 @@ class ClusteringVisualizer:
 
     def set_generator(self, gen):
         self.generator = gen
-        self.timer.start(500)
+        if(self.algorithm_name == "KMeans"):
+            self.timer.start(500)
+        else:
+            self.timer.start(250)
 
     def update(self):
         try:
@@ -56,12 +58,20 @@ class ClusteringVisualizer:
             
             new_brushes = []
             for label in labels:
-                c = self.colors[label]
+                if label == -1:
+                    c = (128, 128, 128)
+                elif label == -2:
+                    c = (0, 0, 0)
+                else:
+                    c = self.colors[label]
                 new_brushes.append(pg.mkBrush(c))
 
             self.scatter_data.setBrush(new_brushes)
-            self.scatter_centroids.setData(pos=centroids)
-            
+            if centroids is not None:
+                self.scatter_centroids.setData(pos=centroids)
+            else:
+                self.scatter_centroids.clear()
+
             if event == "done":
                 print("Clustering terminado.")
 

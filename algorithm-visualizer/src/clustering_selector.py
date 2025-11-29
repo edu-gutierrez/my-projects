@@ -1,5 +1,5 @@
 import numpy as np
-from PyQt5.QtWidgets import QWidget, QLabel, QComboBox, QSpinBox, QPushButton, QVBoxLayout, QHBoxLayout
+from PyQt5.QtWidgets import QWidget, QLabel, QComboBox, QSpinBox, QPushButton, QVBoxLayout, QHBoxLayout, QDoubleSpinBox
 from clustering_manager import get_algorithm, ALGORITHMS_QT
 from clustering_visualizer import ClusteringVisualizer
 
@@ -21,12 +21,12 @@ class Clustering_Selector(QWidget):
         self.algorithm_combo.setStyleSheet( """
                                             QComboBox {
                                                 background-color: #00ffff;
-                                                color: #000000;  
+                                                color: #000000;
                                                 border: 2px solid #000000;
                                                 border-radius: 5px;
                                                 padding: 5px;
                                                 padding-left: 10px;
-                                                padding-right: 30px; 
+                                                padding-right: 30px;
                                             }
 
                                             QComboBox QAbstractItemView {
@@ -42,6 +42,35 @@ class Clustering_Selector(QWidget):
         algorithm_layout.addWidget(self.algorithm_combo)
         layout.addLayout(algorithm_layout)
 
+        dataShape_layout = QHBoxLayout()
+        dataShape_label = QLabel("Forma de Datos:")
+        dataShape_label.setStyleSheet("color: #000000; font-weight: bold;")
+        self.dataShape_combo = QComboBox()
+        self.dataShape_combo.addItems(["Blobs", "Donut"])
+        self.dataShape_combo.setStyleSheet("""
+                                            QComboBox {
+                                                background-color: #00ffff;
+                                                color: #000000;
+                                                border: 2px solid #000000;
+                                                border-radius: 5px;
+                                                padding: 5px;
+                                                padding-left: 10px;
+                                                padding-right: 30px;
+                                            }
+
+                                            QComboBox QAbstractItemView {
+                                                background-color: #00bfbf;
+                                                color: #000000;
+                                                border: 1px solid #000000;
+                                                selection-background-color: #008080;
+                                                selection-color: #000000;
+                                                outline: none;
+                                            }
+                                            """)
+        dataShape_layout.addWidget(dataShape_label)
+        dataShape_layout.addWidget(self.dataShape_combo)
+        layout.addLayout(dataShape_layout)
+
         n_layout = QHBoxLayout()
         n_label = QLabel("Número de Puntos (N):")
         n_label.setStyleSheet("color: #000000; font-weight: bold;")
@@ -55,9 +84,9 @@ class Clustering_Selector(QWidget):
                                         color: #000000;
                                         border: 2px solid #000000;
                                         border-radius: 5px;
-                                        padding: 5px; 
+                                        padding: 5px;
                                         padding-left: 10px;
-                                        padding-right: 30px; 
+                                        padding-right: 30px;
                                     }
                                     QSpinBox::selection {
                                         background-color: #00bfbf;
@@ -74,7 +103,7 @@ class Clustering_Selector(QWidget):
 
         k_layout = QHBoxLayout()
 
-        k_label = QLabel("Número de Clusters (K):")
+        k_label = QLabel("Clusters / Min Sample (K):")
         k_label.setStyleSheet("color: #000000; font-weight: bold;")
 
         self.k_spin = QSpinBox()
@@ -86,9 +115,9 @@ class Clustering_Selector(QWidget):
                                         color: #000000;
                                         border: 2px solid #000000;
                                         border-radius: 5px;
-                                        padding: 5px; 
+                                        padding: 5px;
                                         padding-left: 10px;
-                                        padding-right: 30px; 
+                                        padding-right: 30px;
                                     }
                                     QSpinBox::selection {
                                         background-color: #00bfbf;
@@ -102,6 +131,38 @@ class Clustering_Selector(QWidget):
         k_layout.addWidget(k_label)
         k_layout.addWidget(self.k_spin)
         layout.addLayout(k_layout)
+
+        e_layout = QHBoxLayout()
+
+        e_label = QLabel("Epsilon:")
+        e_label.setStyleSheet("color: #000000; font-weight: bold;")
+
+        self.e_spin = QDoubleSpinBox()
+        self.e_spin.setRange(1.0, 50.0)
+        self.e_spin.setValue(5.0)
+        self.e_spin.setSingleStep(0.5)
+        self.e_spin.setStyleSheet("""
+                                    QDoubleSpinBox {
+                                        background-color: #00ffff;
+                                        color: #000000;
+                                        border: 2px solid #000000;
+                                        border-radius: 5px;
+                                        padding: 5px; 
+                                        padding-left: 10px;
+                                        padding-right: 30px;
+                                    }
+                                    QDoubleSpinBox::selection {
+                                        background-color: #00bfbf;
+                                        color: #000000;
+                                    }
+                                    QDoubleSpinBox::up-button:hover, QSpinBox::down-button:hover {
+                                        background-color: #00bfbf;
+                                    }
+                                    """)
+
+        e_layout.addWidget(e_label)
+        e_layout.addWidget(self.e_spin)
+        layout.addLayout(e_layout)
 
         self.start_button = QPushButton("Iniciar")
         self.start_button.setStyleSheet("""
@@ -133,21 +194,57 @@ class Clustering_Selector(QWidget):
         alg_key = ALGORITHMS_QT[alg_text]
         n_points = self.n_spin.value()
         k_clusters = self.k_spin.value()
+        shape = self.dataShape_combo.currentText()
 
         name, alg = get_algorithm(alg_key)
         print("Ejecutando "f"{name}...")
 
         data = []
-        for _ in range(k_clusters): # Generamos puntos que esten cerca de 2 centros random para que la visualización sea divertida
-            center = np.random.rand(2) * 100 
-            points = center + np.random.randn(n_points // k_clusters, 2) * 10
-            data.append(points)
+        if shape == "Blobs":
+            if name == "KMeans":
+                for _ in range(k_clusters):
+                    center = np.random.rand(2) * 100
+                    points = center + np.random.randn(n_points // k_clusters, 2) * 10
+                    data.append(points)
+            else:
+                for _ in range(4):
+                    center = np.random.rand(2) * 100
+                    points = center + np.random.randn(n_points // k_clusters, 2) * 10
+                    data.append(points)
+            data = np.vstack(data)
+
+        elif shape == "Donut":
+            n_inner = n_points // 3
+            n_outer = n_points - n_inner
+            
+            # Circulo interior
+            angles_inner = np.random.rand(n_inner) * 2 * np.pi
+            radi_inner = 15 + np.random.randn(n_inner) * 3
+            
+            x_inner = 50 + radi_inner * np.cos(angles_inner)
+            y_inner = 50 + radi_inner * np.sin(angles_inner)
+            inner_points = np.column_stack((x_inner, y_inner))
+            
+            # Circulo exterior
+            angles_outer = np.random.rand(n_outer) * 2 * np.pi
+            radi_outer = 40 + np.random.randn(n_outer) * 4
+            
+            x_outer = 50 + radi_outer * np.cos(angles_outer)
+            y_outer = 50 + radi_outer * np.sin(angles_outer)
+            outer_points = np.column_stack((x_outer, y_outer))
+            
+            data = np.vstack((inner_points, outer_points))
         
-        data = np.vstack(data)
         np.random.shuffle(data)
 
-        self.visualizer = ClusteringVisualizer(data, k_clusters, name)
-        self.visualizer.win.show()
+        if alg_key == "1": # KMeans
+            generator = alg(data, k_clusters)
+            self.visualizer = ClusteringVisualizer(data, name)
         
-        generator = alg(data, k_clusters)
+        elif alg_key == "2": # DBSCAN
+            epsilon = self.e_spin.value()
+            generator = alg(data, epsilon, k_clusters)
+            self.visualizer = ClusteringVisualizer(data, name)
+
+        self.visualizer.win.show()
         self.visualizer.set_generator(generator)
