@@ -47,10 +47,10 @@ class ClusteringVisualizer:
 
     def set_generator(self, gen):
         self.generator = gen
-        if(self.algorithm_name == "KMeans"):
-            self.timer.start(500)
-        else:
+        if(self.algorithm_name == "DBSCAN"):
             self.timer.start(250)
+        else:
+            self.timer.start(500)
 
     def update(self):
         try:

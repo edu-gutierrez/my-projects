@@ -40,6 +40,7 @@ class Clustering_Selector(QWidget):
                                             """)
         algorithm_layout.addWidget(algorithm_label)
         algorithm_layout.addWidget(self.algorithm_combo)
+        self.algorithm_combo.currentIndexChanged.connect(self.update_ui)
         layout.addLayout(algorithm_layout)
 
         dataShape_layout = QHBoxLayout()
@@ -103,8 +104,8 @@ class Clustering_Selector(QWidget):
 
         k_layout = QHBoxLayout()
 
-        k_label = QLabel("Clusters / Min Sample (K):")
-        k_label.setStyleSheet("color: #000000; font-weight: bold;")
+        self.k_label = QLabel("Clusters / Min Sample (K):")
+        self.k_label.setStyleSheet("color: #000000; font-weight: bold;")
 
         self.k_spin = QSpinBox()
         self.k_spin.setRange(2, 10)
@@ -128,14 +129,14 @@ class Clustering_Selector(QWidget):
                                     }
                                     """)
 
-        k_layout.addWidget(k_label)
+        k_layout.addWidget(self.k_label)
         k_layout.addWidget(self.k_spin)
         layout.addLayout(k_layout)
 
         e_layout = QHBoxLayout()
 
-        e_label = QLabel("Epsilon:")
-        e_label.setStyleSheet("color: #000000; font-weight: bold;")
+        self.e_label = QLabel("Epsilon:")
+        self.e_label.setStyleSheet("color: #000000; font-weight: bold;")
 
         self.e_spin = QDoubleSpinBox()
         self.e_spin.setRange(1.0, 50.0)
@@ -160,7 +161,7 @@ class Clustering_Selector(QWidget):
                                     }
                                     """)
 
-        e_layout.addWidget(e_label)
+        e_layout.addWidget(self.e_label)
         e_layout.addWidget(self.e_spin)
         layout.addLayout(e_layout)
 
@@ -188,6 +189,27 @@ class Clustering_Selector(QWidget):
         self.setLayout(layout)
 
         self.visualizer = None
+        self.update_ui()
+
+    def update_ui(self):
+        alg_text = self.algorithm_combo.currentText()
+        
+        if "DBSCAN" in alg_text:
+            self.k_label.setText("Min Sample:")
+            
+            self.k_spin.setRange(2, 50)
+            self.k_spin.setValue(4)
+            self.e_label.show()
+            self.e_spin.show()
+            
+        else:
+            self.k_label.setText("Número de Clusters (K):")
+            
+            self.k_spin.setRange(2, 10)
+            self.k_spin.setValue(3)
+            
+            self.e_label.hide()
+            self.e_spin.hide()
 
     def start(self):
         alg_text = self.algorithm_combo.currentText()
@@ -201,7 +223,7 @@ class Clustering_Selector(QWidget):
 
         data = []
         if shape == "Blobs":
-            if name == "KMeans":
+            if name == "KMeans" or name == "Hierarchical":
                 for _ in range(k_clusters):
                     center = np.random.rand(2) * 100
                     points = center + np.random.randn(n_points // k_clusters, 2) * 10
@@ -237,7 +259,7 @@ class Clustering_Selector(QWidget):
         
         np.random.shuffle(data)
 
-        if alg_key == "1": # KMeans
+        if alg_key == "1" or alg_key == "3": # KMeans or Hierarchical
             generator = alg(data, k_clusters)
             self.visualizer = ClusteringVisualizer(data, name)
         

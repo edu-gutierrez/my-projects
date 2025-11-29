@@ -86,3 +86,60 @@ def _expand_cluster(data, labels, neighbors, cluster_id, eps, min_samples):
 def _get_neighbors(data, point, eps):
     distances = np.linalg.norm(data - data[point], axis=1)
     return np.where(distances <= eps)[0]
+
+def hierarchical(data, k):
+    n_points = len(data)
+
+    # Inicializamos cada punto como un cluster
+    labels = np.arange(n_points)
+    clusters = {}
+    for i in range(n_points):
+        clusters[i] = [i]
+    
+    yield ("init", labels, None)
+    
+    current_k = n_points
+    
+    while current_k > k:
+        min_dist = float('inf')
+        merge = (-1, -1)
+        
+        active_ids = list(clusters.keys())
+        
+        # Para cada cluster buscamos el mas cercano y los fusionamos
+        for i in range(len(active_ids)):
+            id1 = active_ids[i]
+            points1 = data[clusters[id1]]
+            c1 = np.mean(points1, axis=0)
+            
+            for j in range(i + 1, len(active_ids)):
+                id2 = active_ids[j]
+                points2 = data[clusters[id2]]
+                c2 = np.mean(points2, axis=0)
+                
+                dist = np.linalg.norm(c1 - c2)
+                
+                if dist < min_dist:
+                    min_dist = dist
+                    merge = (id1, id2)
+        
+        id_keep, id_remove = merge
+
+        c1 = np.mean(data[clusters[id_keep]], axis=0)
+        c2 = np.mean(data[clusters[id_remove]], axis=0)
+        fusion_centers = [c1, c2]
+        
+        yield ("update", labels, fusion_centers)
+        
+        clusters[id_keep].extend(clusters[id_remove])
+        
+        for i in range(len(labels)):
+            if labels[i] == id_remove:            
+                labels[i] = id_keep
+
+        del clusters[id_remove]
+        current_k -= 1
+        
+        yield ("update", labels, fusion_centers)
+
+    yield ("done", labels, None)
