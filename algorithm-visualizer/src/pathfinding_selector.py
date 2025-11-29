@@ -1,4 +1,5 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QComboBox, QSpinBox, QPushButton, QVBoxLayout, QHBoxLayout
+from PyQt5.QtWidgets import QWidget, QLabel, QComboBox, QSpinBox, QPushButton, QVBoxLayout, QHBoxLayout, QSlider
+from PyQt5.QtCore import Qt
 from pathfinding_manager import get_algorithm, ALGORITHMS_QT
 from pathfinding_visualizer import PathfindingVisualizer
 from pathfinding_algorithms import generate_maze
@@ -124,6 +125,17 @@ class Pathfinding_Selector(QWidget):
         p_layout.addWidget(self.p_spin)
         layout.addLayout(p_layout)
 
+        t_layout = QHBoxLayout()
+        t_label = QLabel("Delay:")
+        t_label.setStyleSheet("color: #000000; font-weight: bold;")
+        self.t_slider = QSlider(Qt.Horizontal)
+        self.t_slider.setMinimum(1)
+        self.t_slider.setMaximum(50)
+        self.t_slider.setValue(10)
+        t_layout.addWidget(t_label)
+        t_layout.addWidget(self.t_slider)
+        layout.addLayout(t_layout)
+
         self.start_button = QPushButton("Iniciar")
         self.start_button.setStyleSheet("""
                                         QPushButton {
@@ -155,10 +167,11 @@ class Pathfinding_Selector(QWidget):
         rows = self.f_spin.value()
         columns = self.c_spin.value()
         prob = self.p_spin.value() / 100
+        t = self.t_slider.value()
 
         name, alg = get_algorithm(algorithm_key)
         print("Ejecutando "f"{name}...")
-        self.visualizer = PathfindingVisualizer(rows, columns, name)
+        self.visualizer = PathfindingVisualizer(rows, columns, name, t)
         self.visualizer.win.show()
         generate_maze(self.visualizer.grid_data, prob)
 

@@ -3,10 +3,11 @@ from PyQt5.QtCore import QTimer
 import numpy as np
 
 class PathfindingVisualizer:
-    def __init__(self, rows, columns, algorithm_name):
+    def __init__(self, rows, columns, algorithm_name, t):
         self.rows = rows
         self.columns = columns
         self.algorithm_name = algorithm_name
+        self.time = t
 
         self.win = pg.GraphicsLayoutWidget(show=True, title=f"{algorithm_name}")
         self.plot = self.win.addPlot()
@@ -40,7 +41,7 @@ class PathfindingVisualizer:
 
     def set_generator(self, gen):
         self.generator = gen
-        self.timer.start(5)
+        self.timer.start(self.time)
     
     def update(self):
         try:
