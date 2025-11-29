@@ -1,5 +1,6 @@
 import numpy as np
-from PyQt5.QtWidgets import QWidget, QLabel, QComboBox, QSpinBox, QPushButton, QVBoxLayout, QHBoxLayout, QDoubleSpinBox
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QWidget, QLabel, QComboBox, QSpinBox, QPushButton, QVBoxLayout, QHBoxLayout, QDoubleSpinBox, QSlider
 from clustering_manager import get_algorithm, ALGORITHMS_QT
 from clustering_visualizer import ClusteringVisualizer
 
@@ -165,6 +166,17 @@ class Clustering_Selector(QWidget):
         e_layout.addWidget(self.e_spin)
         layout.addLayout(e_layout)
 
+        t_layout = QHBoxLayout()
+        t_label = QLabel("Delay:")
+        t_label.setStyleSheet("color: #000000; font-weight: bold;")
+        self.t_slider = QSlider(Qt.Horizontal)
+        self.t_slider.setMinimum(1)
+        self.t_slider.setMaximum(500)
+        self.t_slider.setValue(250)
+        t_layout.addWidget(t_label)
+        t_layout.addWidget(self.t_slider)
+        layout.addLayout(t_layout)
+
         self.start_button = QPushButton("Iniciar")
         self.start_button.setStyleSheet("""
                                         QPushButton {
@@ -196,11 +208,13 @@ class Clustering_Selector(QWidget):
         
         if alg_text == "DBSCAN":
             self.k_label.setText("Min Sample:")
-            
             self.k_spin.setRange(2, 50)
             self.k_spin.setValue(4)
+            self.e_label.setText("Epsilon:")
             self.e_label.show()
             self.e_spin.show()
+            self.k_label.show()
+            self.k_spin.show()
         elif alg_text == "Mean Shift":
             self.e_label.setText("Radio:")
             self.e_label.show()
@@ -212,7 +226,8 @@ class Clustering_Selector(QWidget):
 
         else:
             self.k_label.setText("Número de Clusters (K):")
-            
+            self.k_label.show()
+            self.k_spin.show()
             self.k_spin.setRange(2, 10)
             self.k_spin.setValue(3)
             
@@ -225,6 +240,7 @@ class Clustering_Selector(QWidget):
         n_points = self.n_spin.value()
         k_clusters = self.k_spin.value()
         shape = self.dataShape_combo.currentText()
+        t = self.t_slider.value()
 
         name, alg = get_algorithm(alg_key)
         print("Ejecutando "f"{name}...")
@@ -269,16 +285,16 @@ class Clustering_Selector(QWidget):
 
         if alg_key == "1" or alg_key == "3": # KMeans or Hierarchical
             generator = alg(data, k_clusters)
-            self.visualizer = ClusteringVisualizer(data, name)
+            self.visualizer = ClusteringVisualizer(data, name, t)
         
         elif alg_key == "2": # DBSCAN
             epsilon = self.e_spin.value()
             generator = alg(data, epsilon, k_clusters)
-            self.visualizer = ClusteringVisualizer(data, name)
+            self.visualizer = ClusteringVisualizer(data, name, t)
         elif alg_key == "4": # Mean Shift
             radio = self.e_spin.value()
             generator = alg(data, radio)
-            self.visualizer = ClusteringVisualizer(data, name)
+            self.visualizer = ClusteringVisualizer(data, name, t)
 
         self.visualizer.win.show()
         self.visualizer.set_generator(generator)

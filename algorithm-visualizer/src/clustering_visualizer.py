@@ -2,9 +2,10 @@ import pyqtgraph as pg
 from PyQt5.QtCore import QTimer
 
 class ClusteringVisualizer:
-    def __init__(self, data, algorithm_name):
+    def __init__(self, data, algorithm_name, t):
         self.data = data
         self.algorithm_name = algorithm_name
+        self.time = t
 
         self.win = pg.GraphicsLayoutWidget(show=True, title=f"{algorithm_name}")
         self.plot = self.win.addPlot()
@@ -47,10 +48,7 @@ class ClusteringVisualizer:
 
     def set_generator(self, gen):
         self.generator = gen
-        if(self.algorithm_name == "DBSCAN"):
-            self.timer.start(250)
-        else:
-            self.timer.start(500)
+        self.timer.start(self.time)
 
     def update(self):
         try:
