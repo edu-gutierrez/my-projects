@@ -10,7 +10,7 @@ Herramienta de escritorio para visualizar el comportamiento de algoritmos en tie
 
 * **Tech Stack:** Python, PyQt, NumPy, PyQtGraph.
 * **Detalles:**
-  * Implementación de +20 algoritmos de ordenamiento y 5 de pathfinding.
+  * Implementación de +20 algoritmos de ordenamiento, 5 de pathfinding y 4 de clustering.
 * [Ir al código](./algorithm-visualizer)
 
 ### 2. GL-Scrapbook (Motor Gráfico Experimental)
