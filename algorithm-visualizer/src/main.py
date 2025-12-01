@@ -9,7 +9,7 @@ class Launcher(QWidget):
         super().__init__()
         self.setStyleSheet("background-color:#FCFAF9;")
         self.setWindowTitle("Visualizador de Algoritmos")
-        self.setFixedSize(600, 300)
+        self.setFixedSize(450, 300)
         self.initUI()
 
     def initUI(self):
@@ -94,15 +94,15 @@ class Launcher(QWidget):
 
     def launch_sorting(self):
         print("Lanzando Sorting...")
-        subprocess.Popen([sys.executable, "main_sorting.py"])
+        subprocess.Popen([sys.executable, "src/main_sorting.py"])
 
     def launch_pathfinding(self):
         print("Lanzando Pathfinding...")
-        subprocess.Popen([sys.executable, "main_pathfinding.py"])
+        subprocess.Popen([sys.executable, "src/main_pathfinding.py"])
     
     def launch_clustering(self):
         print("Lanzando Clustering...")
-        subprocess.Popen([sys.executable, "main_clustering.py"])
+        subprocess.Popen([sys.executable, "src/main_clustering.py"])
 
 if __name__ == "__main__":
     app = QApplication([])
