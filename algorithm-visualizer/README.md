@@ -44,7 +44,7 @@ python3 src/main.py
 
 ### Algoritmos de Pathfinding
 
-| Nombre | Tiempo (Peor caso) | Memoria |
+| Nombre | Complejidad (Peor caso) | Memoria |
 | --- | --- | --- |
 | BFS (Breadth-First Search) | O(V + E) | O(V) |
 | DFS (Depth-First Search) | O(V + E) | O(V) |
