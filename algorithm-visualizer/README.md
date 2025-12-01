@@ -12,9 +12,11 @@ Este proyecto permite ver paso a paso cómo funcionan diferentes algoritmos most
 
 ## Instalación y ejecución
 
+Tienes que estar en la carpeta src al ejecutar el programa
+
 ```bash
 pip install -r requirements.txt
-python3 src/main.py
+python3 main.py
 ```
 
 ## Algoritmos implementados

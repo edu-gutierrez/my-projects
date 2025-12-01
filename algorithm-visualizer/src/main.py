@@ -9,7 +9,7 @@ class Launcher(QWidget):
         super().__init__()
         self.setStyleSheet("background-color:#FCFAF9;")
         self.setWindowTitle("Visualizador de Algoritmos")
-        self.setFixedSize(400, 300)
+        self.setFixedSize(600, 300)
         self.initUI()
 
     def initUI(self):
