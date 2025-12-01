@@ -14,7 +14,7 @@ Este proyecto permite ver paso a paso cómo funcionan diferentes algoritmos most
 
 ```bash
 pip install -r requirements.txt
-python3 main.py
+python3 src/main.py
 ```
 
 ## Algoritmos implementados
