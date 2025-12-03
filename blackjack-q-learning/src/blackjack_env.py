@@ -36,6 +36,24 @@ def calculate_hand_value(hand):
         
     return value
 
+def has_usable_ace(hand):
+    value = 0
+    aces = 0
+    
+    for card in hand:
+        val = get_card_value(card)
+        value += val
+        if val == 11:
+            aces += 1
+            
+    while value > 21 and aces > 0:
+        value -= 10
+        aces -= 1
+    
+    if aces > 0:
+        return True
+    return False
+
 def has_blackjack(hand):
     if len(hand) == 2 and calculate_hand_value(hand) == 21:
         return True
@@ -78,8 +96,8 @@ class BlackjackEnvironment:
     def _get_state(self):
         player_sum = calculate_hand_value(self.player_hand)
         dealer_card_val = get_card_value(self.dealer_hand[0])
-
-        return (player_sum, dealer_card_val)
+        usable_ace = has_usable_ace(self.player_hand)
+        return (player_sum, dealer_card_val, usable_ace)
     
     def step(self, action):
         # La AI ejecuta una acción

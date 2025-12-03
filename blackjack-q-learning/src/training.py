@@ -21,7 +21,7 @@ def choose_action(state, epsilon):
         return 1 # Mejor pedir 
 
 def train():
-    total_episodes = 1000000
+    total_episodes = 10000000
     learning_rate = 0.1
     discount_factor = 0.99
     epsilon = 1.0
@@ -59,7 +59,7 @@ def train():
         # Reducimos exploración
         epsilon = max(min_epsilon, epsilon * epsilon_decay)
         
-        if episode % 100000 == 0:
+        if episode % 1000000 == 0:
             print(f"Episodio {episode} completado")
 
     print("Entrenamiento finalizado")
