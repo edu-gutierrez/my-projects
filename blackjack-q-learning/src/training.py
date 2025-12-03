@@ -7,25 +7,27 @@ q_table = {}
 
 def get_q_values(state):
     if state not in q_table:
-        q_table[state] = [0.0, 0.0] # [Quedarse, Pedir]
+        q_table[state] = [0.0, 0.0, 0.0] # [Quedarse, Pedir, Doblar]
     return q_table[state]
 
 def choose_action(state, epsilon):
     if random.random() < epsilon:
-        return random.choice([0, 1])
+        return random.choice([0, 1, 2])
     
     values = get_q_values(state)
-    if values[0] > values[1]:
+    if values[0] > values[1] and values[0] > values[2]:
         return 0 # Mejor quedarse
+    elif values[2] > values[0] and values[2] > values[1]:
+        return 2 # Mejor doblar
     else:
         return 1 # Mejor pedir 
 
 def train():
-    total_episodes = 10000000
-    learning_rate = 0.1
+    total_episodes = 100000000
+    learning_rate = 0.01
     discount_factor = 0.99
     epsilon = 1.0
-    epsilon_decay = 0.99999
+    epsilon_decay = 0.9999999
     min_epsilon = 0.01
     env = BlackjackEnvironment()
 

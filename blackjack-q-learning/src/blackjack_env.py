@@ -97,11 +97,36 @@ class BlackjackEnvironment:
         player_sum = calculate_hand_value(self.player_hand)
         dealer_card_val = get_card_value(self.dealer_hand[0])
         usable_ace = has_usable_ace(self.player_hand)
-        return (player_sum, dealer_card_val, usable_ace)
+        can_double = (len(self.player_hand) == 2)
+        return (player_sum, dealer_card_val, usable_ace, can_double)
     
     def step(self, action):
         # La AI ejecuta una acción
 
+        if action == 2: # Doblar
+            if len(self.player_hand) != 2: # Castigamos muy fuerte a la IA para que no doble si tiene mas de 2 cartas
+                return self._get_state, -10, True
+            
+            self.player_hand.append(draw_card(self.deck))
+
+            if has_busted(self.player_hand):
+                return self._get_state(), -2, True # Pierde así que le castigamos x2
+
+            while calculate_hand_value(self.dealer_hand) < 17:
+                self.dealer_hand.append(draw_card(self.deck))
+
+            player_sum = calculate_hand_value(self.player_hand)
+            dealer_sum = calculate_hand_value(self.dealer_hand)
+            
+            if has_busted(self.dealer_hand):
+                return self._get_state(), 2, True # Gana así que le recompensamos x2
+            elif player_sum > dealer_sum:
+                return self._get_state(), 2, True # Gana x2
+            elif player_sum == dealer_sum:
+                return self._get_state(), 0, True # Empata así que no hay recompensa ni castigo
+            else:
+                return self._get_state(), -2, True # Pierde x2
+            
         if action == 1: # Pedir
             self.player_hand.append(draw_card(self.deck))
             if has_busted(self.player_hand):
@@ -137,7 +162,7 @@ def play_manually():
     print(f"Tu mano: {env.player_hand} ({state[0]}) | Dealer muestra: {env.dealer_hand[0]}")
 
     while not done:
-        action = int(input("0: Quedarse, 1: Pedir -> "))
+        action = int(input("0: Quedarse, 1: Pedir, 2: Doblar -> "))
         state, reward, done = env.step(action)
         print(f"Tu mano: {env.player_hand} ({state[0]})")
         

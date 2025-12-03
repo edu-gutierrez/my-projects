@@ -1,6 +1,8 @@
 import pickle
 from blackjack_env import BlackjackEnvironment, calculate_hand_value
 
+q_table = {}
+
 try:
     with open("blackjack_brain.pkl", "rb") as f:
         q_table = pickle.load(f)
@@ -16,15 +18,19 @@ def get_ai_advice(state):
     values = q_table[state]
     q_stay = values[0]
     q_hit = values[1]
+    q_double = values[2]
     
-    if q_hit > q_stay:
+    if q_hit > q_stay and q_hit > q_double:
         advice = "PEDIR (HIT)"
         better_val = q_hit
+    elif q_double > q_hit and q_double > q_stay:
+        advice = "DOBLAR (DOUBLE)"
+        better_val = q_double
     else:
         advice = "QUEDARSE (STAND)"
         better_val = q_stay
         
-    return f"La IA recomienda: \033[92m{advice}\033[0m (Valor Q: {better_val:.2f})"
+    return f"La IA recomienda: \033[93m{advice}\033[0m (Valor Q: {better_val:.2f})"
 
 def play_interactive():
     env = BlackjackEnvironment()
@@ -43,9 +49,9 @@ def play_interactive():
             print(f"{get_ai_advice(state)}")
             
             action = -1
-            while action not in [0, 1]:
+            while action not in [0, 1, 2]:
                 try:
-                    inp = input("Tu acción [0=Quedarse, 1=Pedir]: ")
+                    inp = input("Tu acción [0=Quedarse, 1=Pedir, 2=Doblar]: ")
                     action = int(inp)
                 except ValueError:
                     pass
