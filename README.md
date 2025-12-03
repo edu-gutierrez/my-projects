@@ -4,7 +4,18 @@ Este repositorio es una colección de proyectos que he programado durante mis es
 
 ## Proyectos Realizados
 
-### 1. Algorithm Visualizer
+### 1. Blackjack Q-Learning
+
+Agente de Reinforcement Learning autónomo que aprende la estrategia óptima de Blackjack mediante auto-juego
+
+* **Tech Stack:** Python, Pickle.
+* **Detalles:**
+  * Implementación desde cero de **Q-Learning** y la **Ecuación de Bellman**.
+  * La AI aprendió la estrategia por si sola (cuando doblar/plantarse/pedir).
+  * Incluye modo de juego en terminal donde la AI te hace de "asesor" diciendote la mejor jugada.
+* [Ir al código](./blackjack-q-learning/)
+
+### 2. Algorithm Visualizer
 
 Herramienta de escritorio para visualizar el comportamiento de algoritmos en tiempo real.
 
@@ -13,7 +24,7 @@ Herramienta de escritorio para visualizar el comportamiento de algoritmos en tie
   * Implementación de +20 algoritmos de ordenamiento, 5 de pathfinding y 4 de clustering.
 * [Ir al código](./algorithm-visualizer)
 
-### 2. GL-Scrapbook (Motor Gráfico Experimental)
+### 3. GL-Scrapbook (Motor Gráfico Experimental)
 
 Entorno de pruebas gráficas desde cero para entender el funcionamiento de un motor gráfico y la pipeline de renderizado.
 
@@ -24,7 +35,7 @@ Entorno de pruebas gráficas desde cero para entender el funcionamiento de un mo
   * Sistema de cámara y gestión de transformaciones en 3D.
 * [Ir al código](./gl-scrapbook)
 
-### 3. TicTacToe (Minimax AI)
+### 4. TicTacToe (Minimax AI)
 
 Implementación dual (CLI y GUI) enfocada en la teoría de juegos.
 
